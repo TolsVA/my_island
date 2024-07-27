@@ -30,6 +30,12 @@ public class MainApplication extends Application {
 
     public void run(Island island) {
         this.island = island;
-        launch();
+        launch(island.getClass().getSimpleName());
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+
     }
 }

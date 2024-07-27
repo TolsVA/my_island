@@ -3,6 +3,7 @@ package ru.javarush.tolstikhin.my_island;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -48,8 +49,7 @@ public class InitController {
         bk.setOnAction(this::close);
 
         exit.setOnAction(event -> {
-            close(event);
-            MainApplication.getStage().close();
+            Platform.exit();
         });
     }
 
