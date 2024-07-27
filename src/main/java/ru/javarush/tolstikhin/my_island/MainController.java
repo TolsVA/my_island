@@ -1,0 +1,82 @@
+package ru.javarush.tolstikhin.my_island;
+
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import ru.javarush.tolstikhin.my_island.view.windows.ErrorWindow;
+import ru.javarush.tolstikhin.my_island.view.windows.InitWindow;
+import ru.javarush.tolstikhin.my_island.view.windows.MainApplication;
+
+public class MainController {
+
+    private static final String MESSAGE = "Площадь острова должна быть заполнена целыми числами";
+    @FXML
+    private ResourceBundle resources;
+
+    @FXML
+    private URL location;
+
+    @FXML
+    private TextField nameIsland;
+
+    @FXML
+    private Button start;
+
+    @FXML
+    private Button stop;
+
+    @FXML
+    private TextField xPoint;
+
+    @FXML
+    private TextField yPoint;
+
+    @FXML
+    void initialize() {
+        nameIsland.setText("Обитаемый остров");
+        xPoint.setText("20");
+        yPoint.setText("100");
+        start.setOnAction(this::start);
+        stop.setOnAction(this::close);
+    }
+
+    private boolean isNumber(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    private void start(ActionEvent event) {
+        if (!xPoint.getText().isEmpty() && isNumber(xPoint.getText())
+                && !yPoint.getText().isEmpty() && isNumber(yPoint.getText())) {
+
+            double x = Double.parseDouble(xPoint.getText());
+            double y = Double.parseDouble(yPoint.getText());
+
+            try {
+                new InitWindow().start(nameIsland.getText(), x, y);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            try {
+                ErrorWindow.start(new Stage(), MESSAGE);
+            } catch (Exception ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+    }
+
+    private void close(ActionEvent event) {
+        MainApplication.getStage().close();
+    }
+
+}
