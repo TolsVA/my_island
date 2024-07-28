@@ -36,6 +36,8 @@ public class MainController {
     @FXML
     private TextField yPoint;
 
+    private static Stage stage;
+
     @FXML
     void initialize() {
         nameIsland.setText("Обитаемый остров");
@@ -43,6 +45,10 @@ public class MainController {
         yPoint.setText("100");
         start.setOnAction(this::start);
         stop.setOnAction(this::close);
+    }
+
+    public static void setStage(Stage stage) {
+        MainController.stage = stage;
     }
 
     private boolean isNumber(String str) {
@@ -58,11 +64,13 @@ public class MainController {
         if (!xPoint.getText().isEmpty() && isNumber(xPoint.getText())
                 && !yPoint.getText().isEmpty() && isNumber(yPoint.getText())) {
 
-            double x = Double.parseDouble(xPoint.getText());
-            double y = Double.parseDouble(yPoint.getText());
-
             try {
-                new InitWindow().start(nameIsland.getText(), x, y);
+                new InitWindow().start(
+                        new Stage(),
+                        nameIsland.getText(),
+                        Double.parseDouble(xPoint.getText()),
+                        Double.parseDouble(yPoint.getText())
+                );
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -76,7 +84,7 @@ public class MainController {
     }
 
     private void close(ActionEvent event) {
-        MainApplication.getStage().close();
+        stage.close();
     }
 
 }

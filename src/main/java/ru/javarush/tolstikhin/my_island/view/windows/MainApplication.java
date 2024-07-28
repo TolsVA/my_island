@@ -5,22 +5,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import ru.javarush.tolstikhin.my_island.InitController;
 import ru.javarush.tolstikhin.my_island.MainController;
+import ru.javarush.tolstikhin.my_island.app.Viewable;
 import ru.javarush.tolstikhin.my_island.islands.Island;
 
-public class MainApplication extends Application {
+import java.util.List;
 
-    private Island island;
+public class MainApplication extends Application implements Viewable {
 
-    private static Stage stage;
-
-    public static Stage getStage() {
-        return stage;
-    }
 
     @Override
     public void start(Stage stage) throws Exception {
-        MainApplication.stage = stage;
+//        Application.Parameters params = getParameters();
+//        List<String> unnamedParams = getParameters().getUnnamed();
+//        System.out.println(unnamedParams.get(0));
+        MainController.setStage(stage);
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.initStyle(StageStyle.UNDECORATED);
@@ -28,14 +28,8 @@ public class MainApplication extends Application {
         stage.show();
     }
 
-    public void run(Island island) {
-        this.island = island;
-        launch(island.getClass().getSimpleName());
-    }
-
     @Override
-    public void stop() throws Exception {
-        super.stop();
-
+    public void run() {
+        launch();
     }
 }
