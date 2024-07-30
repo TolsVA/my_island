@@ -41,8 +41,8 @@ public class MainController {
     @FXML
     void initialize() {
         nameIsland.setText("Обитаемый остров");
-        xPoint.setText("20");
-        yPoint.setText("100");
+        xPoint.setText("3");
+        yPoint.setText("4");
         start.setOnAction(this::start);
         stop.setOnAction(this::close);
     }

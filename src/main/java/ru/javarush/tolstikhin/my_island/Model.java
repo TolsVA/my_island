@@ -9,11 +9,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import ru.javarush.tolstikhin.my_island.islands.Island;
 import ru.javarush.tolstikhin.my_island.islands.squares.Square;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Horse;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Model implements Presentable{
@@ -25,6 +28,12 @@ public class Model implements Presentable{
 
     private final List<String> listNameAnimals = new ArrayList<>(List.of("Buffalo", "Bear", "Horse", "Deer",
             "Boar", "Sheep", "Goat", "Wolf", "Boa", "Fox", "Eagle", "Rabbit", "Duck", "Mouse", "Caterpillar", "Plant"));
+
+    private Map<Class<? extends Organism>, Integer> mapOrganismCount;
+
+    public Model(Map<Class<? extends Organism>, Integer> mapOrganismCount) {
+        this.mapOrganismCount = mapOrganismCount;
+    }
 
     @Override
     public Island createIsland(int x, int y, String nameIsland, Scene scene) {

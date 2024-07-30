@@ -1,10 +1,18 @@
 package ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores;
 
-import ru.javarush.tolstikhin.my_island.islands.squares.residents.Resident;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 
-@Config(name = "Horse", icon = "\uD83D\uDC0E", maxWeight = 400, maxAmount = 20, maxSpeed = 4, maxFood = 60)
-public class Horse extends Resident { //лошадь
+public class Horse extends Organism {
+    public Horse() {
+        setName("Лошадь");
+        setIcon("\uD83D\uDC0E");
+        setMaxWeight(400);
+        setMaxAmount(20);
+        setMaxSpeed(4);
+        setMaxFood(60);
+    }
 }
+
 //Buffalo  Буйвол
 //Bear  Медведь
 //Horse  Лошадь

@@ -18,19 +18,54 @@ import ru.javarush.tolstikhin.my_island.Presentable;
 import ru.javarush.tolstikhin.my_island.app.Viewable;
 import ru.javarush.tolstikhin.my_island.islands.Island;
 import ru.javarush.tolstikhin.my_island.islands.squares.Square;
-import ru.javarush.tolstikhin.my_island.islands.squares.residents.Resident;
-import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Config;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Horse;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Buffalo;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.predators.Bear;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.predators.Wolf;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.predators.Boa;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.predators.Fox;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.predators.Eagle;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Deer;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Boar;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Sheep;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Goat;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Rabbit;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Duck;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Mouse;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Caterpillar;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.plants.Plant;
 
-import java.lang.reflect.Constructor;
-import java.util.ArrayList;
-import java.util.List;
+import java.lang.reflect.Field;
+import java.util.*;
 
 public class InitWindow implements Viewable {
+    public static Presentable model;
     private final List<String> listAnimals = new ArrayList<>(List.of("\uD83D\uDC03", "\uD83D\uDC3B",
             "\uD83D\uDC0E", "\uD83E\uDD8C", "\uD83D\uDC17", "\uD83D\uDC11", "\uD83D\uDC10", "\uD83D\uDC3A",
             "\uD83D\uDC0D", "\uD83E\uDD8A", "\uD83E\uDD85", "\uD83D\uDC07", "\uD83E\uDD86", "\uD83D\uDC01",
             "\uD83D\uDC1B", "\uD83C\uDF3F"));
+
+    private static Map<Class<? extends Organism>, Integer> mapOrganismCount = new HashMap<>();
+
+    static {
+        mapOrganismCount.put(Buffalo.class, 10);
+        mapOrganismCount.put(Bear.class, 5);
+        mapOrganismCount.put(Horse.class, 20);
+        mapOrganismCount.put(Deer.class, 20);
+        mapOrganismCount.put(Boar.class, 50);
+        mapOrganismCount.put(Sheep.class, 140);
+        mapOrganismCount.put(Goat.class, 140);
+        mapOrganismCount.put(Wolf.class, 30);
+        mapOrganismCount.put(Boa.class, 30);
+        mapOrganismCount.put(Fox.class, 30);
+        mapOrganismCount.put(Eagle.class, 20);
+        mapOrganismCount.put(Rabbit.class, 150);
+        mapOrganismCount.put(Duck.class, 200);
+        mapOrganismCount.put(Mouse.class, 500);
+        mapOrganismCount.put(Caterpillar.class, 1000);
+        mapOrganismCount.put(Plant.class, 200);
+    }
 
 
     public void start(Stage stage, String name, double x, double y) throws Exception {
@@ -60,17 +95,45 @@ public class InitWindow implements Viewable {
 //                island.add(gridPaneFill(i, j, scene, island.getSquares()), i, j);
 //            }
 //        }
-        Presentable model = new Model();
+
         Island island = model.createIsland((int)x, (int)y, name, scene);
 
-        System.out.println("rrrrrrr");
-        Horse horse = new Horse();
-//        Class<?> clazz = Class.forName("com.company."+"Horse");
-//        Constructor<?> constructor = clazz.getConstructor();
-//        Object object = constructor.newInstance();
-
+//        System.out.println("rrrrrrr");
+//        Horse horse = new Horse();
+//
+//        Horse clone = (Horse) horse.clone();
+//
+//        clone.setName("Конь ретивый");
+//        System.out.println(horse);
+//        System.out.println(clone);
+////        Class<?> clazz = Class.forName("com.company."+"Horse");
+////        Constructor<?> constructor = clazz.getConstructor();
+////        Object object = constructor.newInstance();
+//
 //        Class<?> myClassClass = Horse.class;
-//        Horse instance = (Horse) myClassClass.newInstance();
+//        Organism instance = (Horse) myClassClass.getDeclaredConstructor().newInstance();
+//        instance.setName("Пегас");
+//        System.out.println(instance);
+//        Organism clone1 = instance.clone();
+//        clone1.setName("Педорас");
+//        System.out.println(clone1);
+//        System.out.println(instance);
+        List<Organism> organismList = new ArrayList<>();
+
+        for (Class<? extends Organism> aClass : mapOrganismCount.keySet()) {
+
+            organismList.add(aClass.getDeclaredConstructor().newInstance());
+        }
+        for (Organism organism : organismList) {
+            System.out.println(organism);
+        }
+
+        for (Map.Entry<Class<? extends Organism>, Integer> entry : mapOrganismCount.entrySet()) {
+            Organism organism = entry.getKey().getDeclaredConstructor().newInstance();
+            System.out.println("name = " + organism.getName() + " icon = " + organism.getIcon()
+                    + " count = " + entry.getValue());
+        }
+
 //
 //        Config annotation = myClassClass.getClass().getAnnotation(Config.class);
 //        Horse resident = (Horse) annotation.newInstance();
@@ -78,7 +141,7 @@ public class InitWindow implements Viewable {
 //
 //        List<Horse> horseList = new ArrayList<>();
 //        horseList.add(annotation);
-//        System.out.println(annotation.);
+
 
 //        Class aClass = horse.getClass();
 //        for (Field declaredField : aClass.getDeclaredFields()) {

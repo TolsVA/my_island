@@ -211,7 +211,10 @@
             </Label>
          </children>
       </GridPane>
-      <Button fx:id="start" layoutX="7.0" layoutY="561.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="291.0" text="Старт" />
+      <Button fx:id="start" layoutX="7.0" layoutY="561.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="291.0" text="ЖРАТЬ!!!">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font></Button>
       <Button fx:id="stop" layoutX="305.0" layoutY="561.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="291.0" text="Стоп" textFill="#f80101" />
       <Button fx:id="bk" layoutX="604.0" layoutY="561.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="291.0" text="Назад" />
       <Button fx:id="exit" layoutX="902.0" layoutY="561.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="291.0" text="Выход" />
