@@ -9,17 +9,23 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import ru.javarush.tolstikhin.my_island.islands.Island;
 import ru.javarush.tolstikhin.my_island.islands.squares.Square;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Horse;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Model implements Presentable{
     Island island;
-    private final List<String> listAnimals = new ArrayList<>(List.of("\uD83D\uDC03", "\uD83D\uDC3B",
+    private final List<String> listIconAnimals = new ArrayList<>(List.of("\uD83D\uDC03", "\uD83D\uDC3B",
             "\uD83D\uDC0E", "\uD83E\uDD8C", "\uD83D\uDC17", "\uD83D\uDC11", "\uD83D\uDC10", "\uD83D\uDC3A",
             "\uD83D\uDC0D", "\uD83E\uDD8A", "\uD83E\uDD85", "\uD83D\uDC07", "\uD83E\uDD86", "\uD83D\uDC01",
             "\uD83D\uDC1B", "\uD83C\uDF3F"));
+
+    private final List<String> listNameAnimals = new ArrayList<>(List.of("Buffalo", "Bear", "Horse", "Deer",
+            "Boar", "Sheep", "Goat", "Wolf", "Boa", "Fox", "Eagle", "Rabbit", "Duck", "Mouse", "Caterpillar", "Plant"));
+
     @Override
     public Island createIsland(int x, int y, String nameIsland, Scene scene) {
         island = new Island(x, y, nameIsland);
@@ -32,7 +38,7 @@ public class Model implements Presentable{
     }
 
     private VBox gridPaneFill(int x, int y, Scene scene, Square[][] squares) {
-        GridPane gridPane = new GridPane(8, 4);
+        GridPane gridPane = new GridPane(4, 4);
         VBox vBox = new VBox(gridPane);
 //        VBox vBox = new VBox();
 //        vBox.getChildren().add(pane);
@@ -52,19 +58,19 @@ public class Model implements Presentable{
         gridPane.setPadding(new Insets(5));
 
         int index = 0;
-        for (int i = 0; i < 8; i = i + 2) {
+        for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                Text animalIcon = new Text(listAnimals.get(index));
+                Text animalIcon = new Text(listIconAnimals.get(index) + ThreadLocalRandom.current().nextInt(0, 30));
 
-                animalIcon.setStyle("-fx-font: 18 arial;");
+                animalIcon.setStyle("-fx-font: 24 arial;");
                 int finalIndex = index;
                 animalIcon.setOnMouseClicked(e ->
-                        System.out.println("Я " + listAnimals.get(finalIndex) + " ячейки i = " + x + ", j = " + y)
+                        System.out.println("Я " + listIconAnimals.get(finalIndex) + " ячейки i = " + x + ", j = " + y)
                 );
                 animalIcon.setFill(Color.WHITE);
-                gridPane.add(animalIcon, i, j);
-                Text counterAnimal = new Text(String.valueOf((int) (Math.random() * 30)) + ";");
-                gridPane.add(counterAnimal, i + 1, j);
+                gridPane.add(animalIcon, j, i);
+//                Text counterAnimal = new Text(String.valueOf((int) (Math.random() * 30)) + ";");
+//                gridPane.add(counterAnimal, i, j);
                 index++;
             }
         }

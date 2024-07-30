@@ -18,7 +18,11 @@ import ru.javarush.tolstikhin.my_island.Presentable;
 import ru.javarush.tolstikhin.my_island.app.Viewable;
 import ru.javarush.tolstikhin.my_island.islands.Island;
 import ru.javarush.tolstikhin.my_island.islands.squares.Square;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.Resident;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Config;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Horse;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +62,28 @@ public class InitWindow implements Viewable {
 //        }
         Presentable model = new Model();
         Island island = model.createIsland((int)x, (int)y, name, scene);
+
+        System.out.println("rrrrrrr");
+        Horse horse = new Horse();
+//        Class<?> clazz = Class.forName("com.company."+"Horse");
+//        Constructor<?> constructor = clazz.getConstructor();
+//        Object object = constructor.newInstance();
+
+//        Class<?> myClassClass = Horse.class;
+//        Horse instance = (Horse) myClassClass.newInstance();
+//
+//        Config annotation = myClassClass.getClass().getAnnotation(Config.class);
+//        Horse resident = (Horse) annotation.newInstance();
+//
+//
+//        List<Horse> horseList = new ArrayList<>();
+//        horseList.add(annotation);
+//        System.out.println(annotation.);
+
+//        Class aClass = horse.getClass();
+//        for (Field declaredField : aClass.getDeclaredFields()) {
+//            System.out.println(declaredField);
+//        }
 
         scrollPane.setContent(island);
         stage.initModality(Modality.APPLICATION_MODAL);
