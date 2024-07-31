@@ -4,11 +4,9 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
-import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.*;
-import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.predators.*;
-import ru.javarush.tolstikhin.my_island.islands.squares.residents.plants.Plant;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Square extends GridPane {
@@ -17,16 +15,17 @@ public class Square extends GridPane {
     private VBox vBox;
     private ScrollBar scrollBar;
 
-    private final Map<Class<? extends Organism>, Integer[]> organismList = new HashMap<>();
+    private final Map<Class<? extends Organism>, List<Organism>> organismMapList = new HashMap<>();
 
     public Square(double x, double y) {
         super(4, 4);
         this.x = (int)x;
         this.y = (int)y;
+        this.setOnMouseClicked(e -> System.out.println("Я ячейка i = " + this.x + ", j = " + this.y));
     }
 
-    public Map<Class<? extends Organism>, Integer[]> getOrganismList() {
-        return organismList;
+    public Map<Class<? extends Organism>, List<Organism>> getOrganismList() {
+        return organismMapList;
     }
 
     public VBox getVBox() {
@@ -37,6 +36,12 @@ public class Square extends GridPane {
 
     public void setScrollBar(ScrollBar scrollBar) {
         this.scrollBar = scrollBar;
+        scrollBar.setMin(0);
+        scrollBar.setMax(10);
+        scrollBar.setValue(10);
+//        scrollBar.setTranslateX(10);
+
+        scrollBar.valueProperty().addListener(e -> vBox.setOpacity(scrollBar.getValue() / 10));
     }
 
     public ScrollBar getScrollBar() {

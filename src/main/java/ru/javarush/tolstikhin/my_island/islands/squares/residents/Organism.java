@@ -1,10 +1,5 @@
 package ru.javarush.tolstikhin.my_island.islands.squares.residents;
 
-import lombok.Getter;
-import lombok.Setter;
-
-//@Setter
-//@Getter
 public abstract class Organism implements Cloneable{
     private String name;
     private String icon;
@@ -15,15 +10,13 @@ public abstract class Organism implements Cloneable{
 
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Organism{");
-        sb.append("name='").append(name).append('\'');
-        sb.append(", icon='").append(icon).append('\'');
-        sb.append(", maxWeight=").append(maxWeight);
-        sb.append(", maxAmount=").append(maxAmount);
-        sb.append(", maxSpeed=").append(maxSpeed);
-        sb.append(", maxFood=").append(maxFood);
-        sb.append('}');
-        return sb.toString();
+        return "Organism{" + "name='" + name + '\'' +
+                ", icon='" + icon + '\'' +
+                ", maxWeight=" + maxWeight +
+                ", maxAmount=" + maxAmount +
+                ", maxSpeed=" + maxSpeed +
+                ", maxFood=" + maxFood +
+                '}';
     }
 
     public String getName() {
