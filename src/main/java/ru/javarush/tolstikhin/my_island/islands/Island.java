@@ -19,8 +19,8 @@ public class Island  extends GridPane {
         squares[x][y] = new Square(x, y);
     }
 
-    public Square[][] getSquares() {
-        return squares;
+    public Square getSquares(int x, int y) {
+        return squares[x][y];
     }
 
     public String getName() {

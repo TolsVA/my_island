@@ -96,7 +96,7 @@ public class InitWindow implements Viewable {
 //            }
 //        }
 
-        Island island = model.createIsland((int)x, (int)y, name, scene);
+        GridPane island = model.createIsland((int)x, (int)y, name, scene);
 
 //        System.out.println("rrrrrrr");
 //        Horse horse = new Horse();
@@ -118,21 +118,21 @@ public class InitWindow implements Viewable {
 //        clone1.setName("Педорас");
 //        System.out.println(clone1);
 //        System.out.println(instance);
-        List<Organism> organismList = new ArrayList<>();
-
-        for (Class<? extends Organism> aClass : mapOrganismCount.keySet()) {
-
-            organismList.add(aClass.getDeclaredConstructor().newInstance());
-        }
-        for (Organism organism : organismList) {
-            System.out.println(organism);
-        }
-
-        for (Map.Entry<Class<? extends Organism>, Integer> entry : mapOrganismCount.entrySet()) {
-            Organism organism = entry.getKey().getDeclaredConstructor().newInstance();
-            System.out.println("name = " + organism.getName() + " icon = " + organism.getIcon()
-                    + " count = " + entry.getValue());
-        }
+//        List<Organism> organismList = new ArrayList<>();
+//
+//        for (Class<? extends Organism> aClass : mapOrganismCount.keySet()) {
+//
+//            organismList.add(aClass.getDeclaredConstructor().newInstance());
+//        }
+//        for (Organism organism : organismList) {
+//            System.out.println(organism);
+//        }
+//
+//        for (Map.Entry<Class<? extends Organism>, Integer> entry : mapOrganismCount.entrySet()) {
+//            Organism organism = entry.getKey().getDeclaredConstructor().newInstance();
+//            System.out.println("name = " + organism.getName() + " icon = " + organism.getIcon()
+//                    + " count = " + entry.getValue());
+//        }
 
 //
 //        Config annotation = myClassClass.getClass().getAnnotation(Config.class);

@@ -3,6 +3,7 @@ package ru.javarush.tolstikhin.my_island.view.windows;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import ru.javarush.tolstikhin.my_island.InitController;
@@ -26,6 +27,24 @@ public class MainApplication extends Application implements Viewable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
+
+
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(getClass().getResource("/fxml/wildIsland.fxml"));
+//        BorderPane page = (BorderPane) loader.load();
+//        WildIslandController controller = loader.getController();
+//        wildIslandStage.setScene(new Scene(page));
+//        wildIslandStage.show();
+
+
+//        FXMLLoader fxmlLoader = new FXMLLoader();
+//        fxmlLoader.setLocation(getClass().getResource("main-view.fxml"));
+//
+//        AnchorPane page = (AnchorPane) fxmlLoader.load();
+//        Scene scene = new Scene(page);
+//        MainController controller = fxmlLoader.getController();
+//        stage.setScene(new Scene(page));
+//        stage.show();
     }
 
     @Override

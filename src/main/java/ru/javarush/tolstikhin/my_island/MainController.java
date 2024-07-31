@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -37,6 +38,7 @@ public class MainController {
     private TextField yPoint;
 
     private static Stage stage;
+    private Scene scene;
 
     @FXML
     void initialize() {
@@ -87,4 +89,7 @@ public class MainController {
         stage.close();
     }
 
+    public void setScene(Scene scene) {
+        this.scene = scene;
+    }
 }

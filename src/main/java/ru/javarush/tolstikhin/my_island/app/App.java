@@ -1,8 +1,6 @@
 package ru.javarush.tolstikhin.my_island.app;
 
 import ru.javarush.tolstikhin.my_island.Model;
-import ru.javarush.tolstikhin.my_island.Presentable;
-import ru.javarush.tolstikhin.my_island.islands.Island;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.*;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.predators.*;

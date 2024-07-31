@@ -36,21 +36,20 @@ public class Model implements Presentable{
     }
 
     @Override
-    public Island createIsland(int x, int y, String nameIsland, Scene scene) {
+    public GridPane createIsland(int x, int y, String nameIsland, Scene scene) {
         island = new Island(x, y, nameIsland);
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                island.add(gridPaneFill(i, j, scene, island.getSquares()), i, j);
+                island.add(gridPaneFill(i, j, scene), i, j);
             }
         }
         return island;
+
     }
 
-    private VBox gridPaneFill(int x, int y, Scene scene, Square[][] squares) {
-        GridPane gridPane = new GridPane(4, 4);
-        VBox vBox = new VBox(gridPane);
-//        VBox vBox = new VBox();
-//        vBox.getChildren().add(pane);
+    private VBox gridPaneFill(int x, int y, Scene scene) {
+        GridPane gridPaneSquare = new Square(x, y);
+        VBox vBox = new VBox(gridPaneSquare);
         vBox.setStyle("-fx-background-color: #14b233;");
 
 
@@ -62,9 +61,9 @@ public class Model implements Presentable{
 
         scrollBar.valueProperty().addListener(e -> vBox.setOpacity(scrollBar.getValue() / 10));
 
-        gridPane.setOnMouseClicked(e -> System.out.println("Я ячейка i = " + x + ", j = " + y));
+        gridPaneSquare.setOnMouseClicked(e -> System.out.println("Я ячейка i = " + x + ", j = " + y));
 
-        gridPane.setPadding(new Insets(5));
+        gridPaneSquare.setPadding(new Insets(5));
 
         int index = 0;
         for (int i = 0; i < 4; i++) {
@@ -77,7 +76,7 @@ public class Model implements Presentable{
                         System.out.println("Я " + listIconAnimals.get(finalIndex) + " ячейки i = " + x + ", j = " + y)
                 );
                 animalIcon.setFill(Color.WHITE);
-                gridPane.add(animalIcon, j, i);
+                gridPaneSquare.add(animalIcon, j, i);
 //                Text counterAnimal = new Text(String.valueOf((int) (Math.random() * 30)) + ";");
 //                gridPane.add(counterAnimal, i, j);
                 index++;
