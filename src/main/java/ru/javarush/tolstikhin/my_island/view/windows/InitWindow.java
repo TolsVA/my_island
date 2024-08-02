@@ -47,7 +47,6 @@ public class InitWindow implements Viewable {
 //            "\uD83D\uDC1B", "\uD83C\uDF3F"));
 
 
-
     public void start(Stage stage, String name, double x, double y) throws Exception {
 //        stage.initStyle(StageStyle.TRANSPARENT);
 //        scrollPane.setStyle(String.format("-fx-font-size: %dpx;", (int) (0.4 * 80)));
@@ -68,7 +67,8 @@ public class InitWindow implements Viewable {
         Label nameIsland = (Label) scene.lookup("#nameIsland");
         nameIsland.setText(name);
 
-        GridPane island = model.createIsland((int)x, (int)y, name, scene);
+        GridPane island = model.createIsland((int) x, (int) y, name, scene);
+
 
 //        System.out.println("rrrrrrr");
 //        Horse horse = new Horse();

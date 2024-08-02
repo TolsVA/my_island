@@ -6,4 +6,6 @@ import javafx.scene.layout.GridPane;
 public interface Presentable {
 
     GridPane createIsland(int x, int y, String name, Scene scene);
+
+    void gffgfgfgfg(double x, double y, Scene scene);
 }
