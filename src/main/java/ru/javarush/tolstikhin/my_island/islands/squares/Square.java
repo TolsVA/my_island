@@ -5,17 +5,17 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Square extends GridPane {
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     private VBox vBox;
     private ScrollBar scrollBar;
 
-    private final Map<Class<? extends Organism>, List<Organism>> organismMapList = new HashMap<>();
+    private final Map<Class<? extends Organism>, List<Organism>> organismMapList = new LinkedHashMap<>();
 
     public Square(double x, double y) {
         super(4, 4);

@@ -10,7 +10,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import ru.javarush.tolstikhin.my_island.view.windows.MainApplication;
 
 public class InitController {
@@ -44,6 +47,8 @@ public class InitController {
 
     private static Stage stage;
 
+    private Presentable model;
+
     @FXML
     void initialize() {
         bk.setOnAction(this::close);
@@ -60,4 +65,9 @@ public class InitController {
     private void close(ActionEvent e) {
         stage.close();
     }
+
+    public void setModel(Presentable model) {
+        this.model = model;
+    }
+
 }

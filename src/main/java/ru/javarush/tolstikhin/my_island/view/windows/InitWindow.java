@@ -61,6 +61,10 @@ public class InitWindow implements Viewable {
         FXMLLoader fxmlLoader = new FXMLLoader(InitController.class.getResource("init-view.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), width, height);
+
+        InitController controller = fxmlLoader.getController();
+        controller.setModel(model);
+
         ScrollPane scrollPane = (ScrollPane) scene.lookup("#scrPane");
         stage.setOnShown(e -> scrollPane.lookup(".viewport").setStyle("-fx-background-color: #bdd0bf;"));
 
@@ -69,62 +73,12 @@ public class InitWindow implements Viewable {
 
         GridPane island = model.createIsland((int) x, (int) y, name, scene);
 
-
-//        System.out.println("rrrrrrr");
-//        Horse horse = new Horse();
-//
-//        Horse clone = (Horse) horse.clone();
-//
-//        clone.setName("Конь ретивый");
-//        System.out.println(horse);
-//        System.out.println(clone);
-////        Class<?> clazz = Class.forName("com.company."+"Horse");
-////        Constructor<?> constructor = clazz.getConstructor();
-////        Object object = constructor.newInstance();
-//
-//        Class<?> myClassClass = Horse.class;
-//        Organism instance = (Horse) myClassClass.getDeclaredConstructor().newInstance();
-//        instance.setName("Пегас");
-//        System.out.println(instance);
-//        Organism clone1 = instance.clone();
-//        clone1.setName("Педорас");
-//        System.out.println(clone1);
-//        System.out.println(instance);
-//        List<Organism> organismList = new ArrayList<>();
-//
-//        for (Class<? extends Organism> aClass : mapOrganismCount.keySet()) {
-//
-//            organismList.add(aClass.getDeclaredConstructor().newInstance());
-//        }
-//        for (Organism organism : organismList) {
-//            System.out.println(organism);
-//        }
-//
-//        for (Map.Entry<Class<? extends Organism>, Integer> entry : mapOrganismCount.entrySet()) {
-//            Organism organism = entry.getKey().getDeclaredConstructor().newInstance();
-//            System.out.println("name = " + organism.getName() + " icon = " + organism.getIcon()
-//                    + " count = " + entry.getValue());
-//        }
-
-//
-//        Config annotation = myClassClass.getClass().getAnnotation(Config.class);
-//        Horse resident = (Horse) annotation.newInstance();
-//
-//
-//        List<Horse> horseList = new ArrayList<>();
-//        horseList.add(annotation);
-
-
-//        Class aClass = horse.getClass();
-//        for (Field declaredField : aClass.getDeclaredFields()) {
-//            System.out.println(declaredField);
-//        }
-
         scrollPane.setContent(island);
+        island.setGridLinesVisible(true);
+
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
 
-        island.setGridLinesVisible(true);
         stage.setScene(scene);
         stage.showAndWait();
     }

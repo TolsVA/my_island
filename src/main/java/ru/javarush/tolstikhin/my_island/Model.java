@@ -13,15 +13,14 @@ import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Model implements Presentable {
     private Island island;
-    private final Map<Class<? extends Organism>, Integer> mapOrganismClassCount;
     private final List<Class<? extends Organism>> listOrganismClass;
+    private final Map<Class<? extends Organism>, Integer> mapOrganismClassCount;
 
     public Model(
             List<Class<? extends Organism>> listOrganismClass,
@@ -34,36 +33,20 @@ public class Model implements Presentable {
     @Override
     public GridPane createIsland(int x, int y, String nameIsland, Scene scene) {
         island = new Island(x, y, nameIsland);
-//        Map<Text, Integer> map = new HashMap<>();
+//        for (int i = 0; i < x; i++) {
+//            for (int j = 0; j < y; j++) {
+//                island.add(gridPaneFill(j, i, scene), i, j);
+//            }
+//        }
+
 //        int index = 0;
-//        for (int k = 0; k < 16; k++) {
+//        for (Integer value : island.getOrganismFullLinkedHashMap().values()) {
 //            Text text = (Text) scene.lookup("#f" + index);
-//            map.put(text, 0);
+//            text.setText(String.valueOf(value));
 //            index++;
 //        }
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                island.add(gridPaneFill(j, i, scene), i, j);
-//                gffgfgfgfg(i, j, scene);
-            }
-        }
         return island;
-
     }
-
-    @Override
-    public void gffgfgfgfg(double x, double y, Scene scene) {
-        Square squares = island.getSquares((int) x, (int) y);
-        int index = 0;
-        for (Map.Entry<Class<? extends Organism>, List<Organism>> classListEntry : squares.getOrganismList().entrySet()) {
-            Text text = (Text) scene.lookup("#f" + index);
-            System.out.println("key = " + classListEntry.getKey() + " value = " + classListEntry.getValue());
-            int i = Integer.parseInt(text.getText()) + classListEntry.getValue().size();
-            text.setText(String.valueOf(i));
-            index++;
-        }
-    }
-
 
     private VBox gridPaneFill(int x, int y, Scene scene) {
 
@@ -73,12 +56,10 @@ public class Model implements Presentable {
 
         ScrollBar scrollBar = (ScrollBar) scene.lookup("#scrColor");
         squareGridPane.setScrollBar(scrollBar);
-        squareGridPane.setPadding(new Insets(5));
-
-        GridPane gridPaneFull = (GridPane) scene.lookup("#gridPaneFull");
+//        squareGridPane.setPadding(new Insets(5));
 
         int index = 0;
-        int count = 0;
+        int count;
         for (int i = 0; i < squareGridPane.getHgap(); i++) {
             for (int j = 0; j < squareGridPane.getVgap(); j++) {
                 Class<? extends Organism> aClass = listOrganismClass.get(index);
@@ -95,6 +76,13 @@ public class Model implements Presentable {
                 }
 
                 organismList.put(aClass, listOrganism);
+                var islandOrganismMap = island.getOrganismFullLinkedHashMap();
+                if (island.getOrganismFullLinkedHashMap().containsKey(aClass)){
+                    islandOrganismMap.put(aClass, islandOrganismMap.get(aClass) + listOrganism.size());
+                } else {
+                    islandOrganismMap.put(aClass, listOrganism.size());
+                }
+
 
                 if (!listOrganism.isEmpty()) {
                     String icon = listOrganism.getFirst().getIcon();
@@ -108,15 +96,7 @@ public class Model implements Presentable {
                     squareGridPane.add(animalIcon, j, i);
                 }
                 index++;
-
-                //        int index = 0;
-//        for (int k = 0; k < 16; k++) {
-//            Text text = (Text) scene.lookup("#f" + index);
-//            map.put(text, 0);
-//            index++;
-//        }
             }
-
         }
         return vBox;
     }
