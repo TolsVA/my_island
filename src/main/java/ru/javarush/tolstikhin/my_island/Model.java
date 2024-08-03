@@ -13,6 +13,7 @@ import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
@@ -33,10 +34,17 @@ public class Model implements Presentable {
     @Override
     public GridPane createIsland(int x, int y, String nameIsland, Scene scene) {
         island = new Island(x, y, nameIsland);
+//        Map<Text, Integer> map = new HashMap<>();
+//        int index = 0;
+//        for (int k = 0; k < 16; k++) {
+//            Text text = (Text) scene.lookup("#f" + index);
+//            map.put(text, 0);
+//            index++;
+//        }
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 island.add(gridPaneFill(j, i, scene), i, j);
-                gffgfgfgfg(i, j, scene);
+//                gffgfgfgfg(i, j, scene);
             }
         }
         return island;
@@ -45,17 +53,20 @@ public class Model implements Presentable {
 
     @Override
     public void gffgfgfgfg(double x, double y, Scene scene) {
-//        Square squares = island.getSquares((int) x, (int) y);
-//        int index = 0;
-//        for (Map.Entry<Class<? extends Organism>, List<Organism>> classListEntry : squares.getOrganismList().entrySet()) {
-//            Text text = (Text) scene.lookup("#f" + index);
-//            text.setText(String.valueOf(classListEntry.getValue().size()));
-//            index++;
-//        }
+        Square squares = island.getSquares((int) x, (int) y);
+        int index = 0;
+        for (Map.Entry<Class<? extends Organism>, List<Organism>> classListEntry : squares.getOrganismList().entrySet()) {
+            Text text = (Text) scene.lookup("#f" + index);
+            System.out.println("key = " + classListEntry.getKey() + " value = " + classListEntry.getValue());
+            int i = Integer.parseInt(text.getText()) + classListEntry.getValue().size();
+            text.setText(String.valueOf(i));
+            index++;
+        }
     }
 
 
     private VBox gridPaneFill(int x, int y, Scene scene) {
+
         Square squareGridPane = new Square(x, y);
         Map<Class<? extends Organism>, List<Organism>> organismList = squareGridPane.getOrganismList();
         VBox vBox = squareGridPane.getVBox();
@@ -85,18 +96,25 @@ public class Model implements Presentable {
 
                 organismList.put(aClass, listOrganism);
 
-                String icon = listOrganism.get(0).getIcon();
+                if (!listOrganism.isEmpty()) {
+                    String icon = listOrganism.getFirst().getIcon();
+                    Text animalIcon = new Text(icon + count);
+                    animalIcon.setStyle("-fx-font: 24 arial;");
 
-                Text animalIcon = new Text(icon + count);
-
-                animalIcon.setStyle("-fx-font: 24 arial;");
-
-                animalIcon.setOnMouseClicked(e ->
-                        System.out.println("Я " + icon + " ячейки x = " + x + ", y = " + y)
-                );
-                animalIcon.setFill(Color.WHITE);
-                squareGridPane.add(animalIcon, j, i);
+                    animalIcon.setOnMouseClicked(e ->
+                            System.out.println("Я " + icon + " ячейки x = " + x + ", y = " + y)
+                    );
+                    animalIcon.setFill(Color.WHITE);
+                    squareGridPane.add(animalIcon, j, i);
+                }
                 index++;
+
+                //        int index = 0;
+//        for (int k = 0; k < 16; k++) {
+//            Text text = (Text) scene.lookup("#f" + index);
+//            map.put(text, 0);
+//            index++;
+//        }
             }
 
         }
