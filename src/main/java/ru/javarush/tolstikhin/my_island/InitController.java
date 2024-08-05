@@ -56,6 +56,9 @@ public class InitController {
         exit.setOnAction(event -> {
             Platform.exit();
         });
+        start.setOnAction(event -> {
+            model.ggggg();
+        });
     }
 
     public static void setStage(Stage stage) {

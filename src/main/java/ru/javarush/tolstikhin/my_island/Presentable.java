@@ -2,9 +2,12 @@ package ru.javarush.tolstikhin.my_island;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 public interface Presentable {
 
     GridPane createIsland(int x, int y, String name, Scene scene);
+
+    void ggggg();
 
 }

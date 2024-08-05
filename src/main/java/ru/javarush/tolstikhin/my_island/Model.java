@@ -2,19 +2,22 @@ package ru.javarush.tolstikhin.my_island;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import ru.javarush.tolstikhin.my_island.islands.Island;
 import ru.javarush.tolstikhin.my_island.islands.squares.Square;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.predators.Fox;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Model implements Presentable {
@@ -33,71 +36,74 @@ public class Model implements Presentable {
     @Override
     public GridPane createIsland(int x, int y, String nameIsland, Scene scene) {
         island = new Island(x, y, nameIsland);
-//        for (int i = 0; i < x; i++) {
-//            for (int j = 0; j < y; j++) {
-//                island.add(gridPaneFill(j, i, scene), i, j);
-//            }
-//        }
+        ExecutorService executorService = Executors.newFixedThreadPool(4);
 
-//        int index = 0;
-//        for (Integer value : island.getOrganismFullLinkedHashMap().values()) {
-//            Text text = (Text) scene.lookup("#f" + index);
-//            text.setText(String.valueOf(value));
-//            index++;
-//        }
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                island.add(gridPaneFill(j, i, scene, executorService), i, j);
+            }
+        }
+
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                int index = 0;
+                for (Integer value : island.getOrganismFullLinkedHashMap().values()) {
+                    Text text = (Text) scene.lookup("#f" + index);
+                    text.setText(String.valueOf(value));
+                    index++;
+                }
+            }
+        });
+
+        executorService.shutdown();
+
         return island;
     }
 
-    private VBox gridPaneFill(int x, int y, Scene scene) {
+    @Override
+    public void ggggg() {
+        List<Organism> remove = island.getSquares(0, 0).getOrganismList().remove(Fox.class);
+        System.out.println(remove.size());
+        remove.getFirst();
+        System.out.println(remove.size());
+    }
 
-        Square squareGridPane = new Square(x, y);
-        Map<Class<? extends Organism>, List<Organism>> organismList = squareGridPane.getOrganismList();
-        VBox vBox = squareGridPane.getVBox();
+    private Square gridPaneFill(int x, int y, Scene scene, ExecutorService executorService) {
+
+        Square squareVBox = new Square(x, y);
+        Map<Class<? extends Organism>, List<Organism>> organismList = squareVBox.getOrganismList();
 
         ScrollBar scrollBar = (ScrollBar) scene.lookup("#scrColor");
-        squareGridPane.setScrollBar(scrollBar);
-//        squareGridPane.setPadding(new Insets(5));
+        squareVBox.setScrollBar(scrollBar);
+        squareVBox.setPadding(new Insets(0));
 
-        int index = 0;
-        int count;
-        for (int i = 0; i < squareGridPane.getHgap(); i++) {
-            for (int j = 0; j < squareGridPane.getVgap(); j++) {
-                Class<? extends Organism> aClass = listOrganismClass.get(index);
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                int count;
+                for (Class<? extends Organism> organismClass : listOrganismClass) {
+                    count = ThreadLocalRandom.current().nextInt(1, mapOrganismClassCount.get(organismClass) + 1);
+                    List<Organism> listOrganism = new ArrayList<>();
+                    for (int o = 0; o < count; o++) {
+                        try {
+                            listOrganism.add(organismClass.getDeclaredConstructor().newInstance());
+                        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                                 NoSuchMethodException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
 
-                count = ThreadLocalRandom.current().nextInt(1, mapOrganismClassCount.get(aClass) + 1);
-                List<Organism> listOrganism = new ArrayList<>();
-                for (int o = 0; o < count; o++) {
-                    try {
-                        listOrganism.add(aClass.getDeclaredConstructor().newInstance());
-                    } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
-                             NoSuchMethodException e) {
-                        throw new RuntimeException(e);
+                    organismList.put(organismClass, listOrganism);
+                    var islandOrganismMap = island.getOrganismFullLinkedHashMap();
+                    if (island.getOrganismFullLinkedHashMap().containsKey(organismClass)) {
+                        islandOrganismMap.put(organismClass, islandOrganismMap.get(organismClass) + listOrganism.size());
+                    } else {
+                        islandOrganismMap.put(organismClass, listOrganism.size());
                     }
                 }
-
-                organismList.put(aClass, listOrganism);
-                var islandOrganismMap = island.getOrganismFullLinkedHashMap();
-                if (island.getOrganismFullLinkedHashMap().containsKey(aClass)){
-                    islandOrganismMap.put(aClass, islandOrganismMap.get(aClass) + listOrganism.size());
-                } else {
-                    islandOrganismMap.put(aClass, listOrganism.size());
-                }
-
-
-                if (!listOrganism.isEmpty()) {
-                    String icon = listOrganism.getFirst().getIcon();
-                    Text animalIcon = new Text(icon + count);
-                    animalIcon.setStyle("-fx-font: 24 arial;");
-
-                    animalIcon.setOnMouseClicked(e ->
-                            System.out.println("Я " + icon + " ячейки x = " + x + ", y = " + y)
-                    );
-                    animalIcon.setFill(Color.WHITE);
-                    squareGridPane.add(animalIcon, j, i);
-                }
-                index++;
             }
-        }
-        return vBox;
+        });
+        return squareVBox;
     }
 }

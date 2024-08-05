@@ -14,6 +14,7 @@ public class Island  extends GridPane {
     private final String name;
     private final Square[][] squares;
     private Map<Class<? extends Organism>, Integer> organismFullLinkedHashMap = new LinkedHashMap<>();
+
     public Island(double x, double y, String name) {
         super(x, y);
         this.name = name;
@@ -23,6 +24,8 @@ public class Island  extends GridPane {
     @Override
     public void add(Node node, int x, int y) {
         super.add(node, x, y);
+        super.setHgap(1);
+        super.setVgap(1);
         squares[x][y] = new Square(x, y);
     }
 

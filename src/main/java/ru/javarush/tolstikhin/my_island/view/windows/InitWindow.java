@@ -53,7 +53,7 @@ public class InitWindow implements Viewable {
 //        label.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
 //        Stage stage = new Stage();
 
-        double width = 1200;
+        double width = 1205;
         double height = 600;
 
         InitController.setStage(stage);

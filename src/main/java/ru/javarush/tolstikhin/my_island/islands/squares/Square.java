@@ -9,30 +9,37 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Square extends GridPane {
+public class Square extends VBox {
     private final int x;
     private final int y;
-    private VBox vBox;
     private ScrollBar scrollBar;
 
     private final Map<Class<? extends Organism>, List<Organism>> organismMapList = new LinkedHashMap<>();
 
     public Square(double x, double y) {
-        super(4, 4);
         this.x = (int)x;
         this.y = (int)y;
-        this.setOnMouseClicked(e -> System.out.println("Я ячейка i = " + this.x + ", j = " + this.y));
+        this.setStyle("-fx-background-color: #14b233;");
+        this.setOnMouseClicked(e -> {
+            System.out.println("Я ячейка i = " + this.x + ", j = " + this.y);
+            for (List<Organism> values : organismMapList.values()) {
+                String icon = values.getFirst().getIcon();
+                int size = values.size();
+                System.out.println(icon + " - " + size);
+            }
+        });
+        this.setPrefSize(50, 50);
     }
 
     public Map<Class<? extends Organism>, List<Organism>> getOrganismList() {
         return organismMapList;
     }
 
-    public VBox getVBox() {
-        vBox = new VBox(this);
-        vBox.setStyle("-fx-background-color: #14b233;");
-        return vBox;
-    }
+//    public VBox getVBox() {
+//        vBox = new VBox(this);
+//        vBox.setStyle("-fx-background-color: #14b233;");
+//        return vBox;
+//    }
 
     public void setScrollBar(ScrollBar scrollBar) {
         this.scrollBar = scrollBar;
@@ -41,7 +48,7 @@ public class Square extends GridPane {
         scrollBar.setValue(10);
 //        scrollBar.setTranslateX(10);
 
-        scrollBar.valueProperty().addListener(e -> vBox.setOpacity(scrollBar.getValue() / 10));
+        scrollBar.valueProperty().addListener(e -> this.setOpacity(scrollBar.getValue() / 10));
     }
 
     public ScrollBar getScrollBar() {
