@@ -1,8 +1,13 @@
 package ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores;
 
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.Animal;
 
-public class Mouse extends Organism {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Mouse extends Animal {
+    public static Map<Class<? extends Organism>, Integer> food = new HashMap<>();
     public Mouse() {
         setName("Мыш");
         setIcon("\uD83D\uDC01");
@@ -10,5 +15,6 @@ public class Mouse extends Organism {
         setMaxAmount(500);
         setMaxSpeed(1);
         setMaxFood(0.01);
+        setSatiety(getMaxFood()/2);
     }
 }

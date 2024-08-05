@@ -10,11 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import ru.javarush.tolstikhin.my_island.view.windows.MainApplication;
 
 public class InitController {
 
@@ -57,7 +53,7 @@ public class InitController {
             Platform.exit();
         });
         start.setOnAction(event -> {
-            model.ggggg();
+            model.start();
         });
     }
 

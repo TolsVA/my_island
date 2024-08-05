@@ -5,8 +5,6 @@ public abstract class Organism implements Cloneable{
     private String icon;
     private double maxWeight; // Вес одного животного, кг.
     private int maxAmount; // 	Максимальное количество животных этого вида на одной клетке.
-    private int maxSpeed;  // Скорость перемещения, не более чем, клеток за ход.
-    private double maxFood; // Сколько килограммов пищи нужно животному для полного насыщения.
 
     @Override
     public String toString() {
@@ -14,8 +12,6 @@ public abstract class Organism implements Cloneable{
                 ", icon='" + icon + '\'' +
                 ", maxWeight=" + maxWeight +
                 ", maxAmount=" + maxAmount +
-                ", maxSpeed=" + maxSpeed +
-                ", maxFood=" + maxFood +
                 '}';
     }
 
@@ -49,22 +45,6 @@ public abstract class Organism implements Cloneable{
 
     public void setMaxAmount(int maxAmount) {
         this.maxAmount = maxAmount;
-    }
-
-    public int getMaxSpeed() {
-        return maxSpeed;
-    }
-
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
-
-    public double getMaxFood() {
-        return maxFood;
-    }
-
-    public void setMaxFood(double maxFood) {
-        this.maxFood = maxFood;
     }
 
     @Override

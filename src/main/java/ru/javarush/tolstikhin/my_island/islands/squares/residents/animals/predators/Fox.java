@@ -1,8 +1,13 @@
 package ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.predators;
 
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.Animal;
 
-public class Fox extends Organism {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Fox extends Animal {
+    public static Map<Class<? extends Organism>, Integer> food = new HashMap<>();
     public Fox() {
         setName("Лиса");
         setIcon("\uD83E\uDD8A");
@@ -10,5 +15,6 @@ public class Fox extends Organism {
         setMaxAmount(30);
         setMaxSpeed(2);
         setMaxFood(2);
+        setSatiety(getMaxFood()/2);
     }
 }

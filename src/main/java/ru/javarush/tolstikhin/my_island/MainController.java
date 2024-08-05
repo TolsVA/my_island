@@ -11,7 +11,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ru.javarush.tolstikhin.my_island.view.windows.ErrorWindow;
 import ru.javarush.tolstikhin.my_island.view.windows.InitWindow;
-import ru.javarush.tolstikhin.my_island.view.windows.MainApplication;
 
 public class MainController {
 

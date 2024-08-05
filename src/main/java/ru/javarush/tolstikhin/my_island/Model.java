@@ -22,14 +22,14 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Model implements Presentable {
     private Island island;
-    private final List<Class<? extends Organism>> listOrganismClass;
+//    private final List<Class<? extends Organism>> listOrganismClass;
     private final Map<Class<? extends Organism>, Integer> mapOrganismClassCount;
 
     public Model(
-            List<Class<? extends Organism>> listOrganismClass,
+//            List<Class<? extends Organism>> listOrganismClass,
             Map<Class<? extends Organism>, Integer> mapOrganismClassCount
     ) {
-        this.listOrganismClass = listOrganismClass;
+//        this.listOrganismClass = listOrganismClass;
         this.mapOrganismClassCount = mapOrganismClassCount;
     }
 
@@ -62,11 +62,9 @@ public class Model implements Presentable {
     }
 
     @Override
-    public void ggggg() {
-        List<Organism> remove = island.getSquares(0, 0).getOrganismList().remove(Fox.class);
-        System.out.println(remove.size());
-        remove.getFirst();
-        System.out.println(remove.size());
+    public void start() {
+        Map<Class<? extends Organism>, List<Organism>> organismList = island.getSquares(0, 0).getOrganismList();
+
     }
 
     private Square gridPaneFill(int x, int y, Scene scene, ExecutorService executorService) {
@@ -82,24 +80,25 @@ public class Model implements Presentable {
             @Override
             public void run() {
                 int count;
-                for (Class<? extends Organism> organismClass : listOrganismClass) {
-                    count = ThreadLocalRandom.current().nextInt(1, mapOrganismClassCount.get(organismClass) + 1);
+                for (Map.Entry<Class<? extends Organism>, Integer> entry : mapOrganismClassCount.entrySet()) {
+                    Class<? extends Organism> aClass = entry.getKey();
+                    count = ThreadLocalRandom.current().nextInt(1, mapOrganismClassCount.get(aClass) + 1);
                     List<Organism> listOrganism = new ArrayList<>();
                     for (int o = 0; o < count; o++) {
                         try {
-                            listOrganism.add(organismClass.getDeclaredConstructor().newInstance());
+                            listOrganism.add(aClass.getDeclaredConstructor().newInstance());
                         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                                  NoSuchMethodException e) {
                             throw new RuntimeException(e);
                         }
                     }
 
-                    organismList.put(organismClass, listOrganism);
+                    organismList.put(aClass, listOrganism);
                     var islandOrganismMap = island.getOrganismFullLinkedHashMap();
-                    if (island.getOrganismFullLinkedHashMap().containsKey(organismClass)) {
-                        islandOrganismMap.put(organismClass, islandOrganismMap.get(organismClass) + listOrganism.size());
+                    if (island.getOrganismFullLinkedHashMap().containsKey(aClass)) {
+                        islandOrganismMap.put(aClass, islandOrganismMap.get(aClass) + listOrganism.size());
                     } else {
-                        islandOrganismMap.put(organismClass, listOrganism.size());
+                        islandOrganismMap.put(aClass, listOrganism.size());
                     }
                 }
             }
