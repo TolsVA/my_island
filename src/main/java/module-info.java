@@ -8,4 +8,6 @@ module ru.javarush.tolstikhin.my_island {
     opens ru.javarush.tolstikhin.my_island to javafx.fxml;
     exports ru.javarush.tolstikhin.my_island.view.windows;
     opens ru.javarush.tolstikhin.my_island.view.windows to javafx.fxml;
+    exports ru.javarush.tolstikhin.my_island.models;
+    opens ru.javarush.tolstikhin.my_island.models to javafx.fxml;
 }

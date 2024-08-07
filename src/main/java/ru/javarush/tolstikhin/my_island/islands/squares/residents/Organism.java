@@ -4,15 +4,23 @@ public abstract class Organism implements Cloneable{
     private String name;
     private String icon;
     private double maxWeight; // Вес одного животного, кг.
+    private double weight = maxWeight / 2;
     private int maxAmount; // 	Максимальное количество животных этого вида на одной клетке.
 
     @Override
     public String toString() {
-        return "Organism{" + "name='" + name + '\'' +
-                ", icon='" + icon + '\'' +
-                ", maxWeight=" + maxWeight +
-                ", maxAmount=" + maxAmount +
-                '}';
+        return "name = '" + name + '\'' +
+                ", icon = '" + icon + '\'' +
+                ", maxWeight = '" + maxWeight + '\'' +
+                ", maxAmount = " + maxAmount + '\'';
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
     }
 
     public String getName() {

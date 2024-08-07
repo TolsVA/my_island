@@ -3,7 +3,6 @@ package ru.javarush.tolstikhin.my_island;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
+import ru.javarush.tolstikhin.my_island.models.Presentable;
 
 public class InitController {
 
@@ -50,8 +50,10 @@ public class InitController {
         bk.setOnAction(this::close);
 
         exit.setOnAction(event -> {
-            Platform.exit();
+            System.exit(0);
         });
+//        exit.setOnAction(this::close);
+
         start.setOnAction(event -> {
             model.start();
         });

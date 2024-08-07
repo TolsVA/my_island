@@ -3,6 +3,7 @@ package ru.javarush.tolstikhin.my_island;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -86,6 +87,7 @@ public class MainController {
 
     private void close(ActionEvent event) {
         stage.close();
+        System.exit(0);
     }
 
     public void setScene(Scene scene) {

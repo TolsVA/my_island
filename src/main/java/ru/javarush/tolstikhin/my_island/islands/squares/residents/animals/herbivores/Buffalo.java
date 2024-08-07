@@ -1,13 +1,9 @@
 package ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores;
 
-import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.Animal;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.EatPlants;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class Buffalo extends Animal {
-    public static Map<Class<? extends Organism>, Integer> food = new HashMap<>();
+public class Buffalo extends Animal implements EatPlants {
     public Buffalo() {
         setName("Буйвол");
         setIcon("\uD83D\uDC03");

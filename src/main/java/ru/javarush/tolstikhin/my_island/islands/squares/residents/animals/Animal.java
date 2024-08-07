@@ -2,17 +2,21 @@ package ru.javarush.tolstikhin.my_island.islands.squares.residents.animals;
 
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Animal extends Organism {
-//    private double maxWeight; // Вес одного животного, кг.
-//    private int maxAmount; // 	Максимальное количество животных этого вида на одной клетке.
-
+public abstract class Animal extends Organism {
+    private final Map<Class<? extends Organism>, Integer> food = new HashMap<>();
     private int maxSpeed;  // Скорость перемещения, не более чем, клеток за ход.
     private double maxFood; // Сколько килограммов пищи нужно животному для полного насыщения.
     private double satiety; // сытность
     private final String[] genders = {"masculine", "feminine"};
     private final String gender = randomGender();  // пол
+
+    public Map<Class<? extends Organism>, Integer> getFood(){
+        return food;
+    }
 
     public int getMaxSpeed() {
         return maxSpeed;
@@ -53,11 +57,25 @@ public class Animal extends Organism {
         return gender;
     }
 
+//    @Override
+//    public String toString() {
+//        return super.toString() +
+//                ", maxSpeed = '" + maxSpeed + '\'' +
+//                ", maxFood = '" + maxFood + '\'';
+//    }
+
+
     @Override
     public String toString() {
-        return "Animal{" + super.toString() +
-                "maxSpeed=" + maxSpeed +
-                ", maxFood=" + maxFood +
-                '}';
+        return super.toString() +
+                ", maxSpeed = '" + maxSpeed + '\'' +
+                ", maxFood = '" + maxFood + '\'' +
+                ", satiety = '" + satiety + '\'' +
+                ", gender = '" + gender + '\'';
+    }
+
+    public void eat(double eat) {
+        satiety = satiety + eat;
+        if (satiety > getMaxWeight()) satiety = getMaxWeight();
     }
 }

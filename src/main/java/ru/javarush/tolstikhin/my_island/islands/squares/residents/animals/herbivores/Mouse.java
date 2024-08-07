@@ -1,13 +1,10 @@
 package ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores;
 
-import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.Animal;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.CanHunt;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.EatPlants;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class Mouse extends Animal {
-    public static Map<Class<? extends Organism>, Integer> food = new HashMap<>();
+public class Mouse extends Animal implements EatPlants, CanHunt {
     public Mouse() {
         setName("Мыш");
         setIcon("\uD83D\uDC01");

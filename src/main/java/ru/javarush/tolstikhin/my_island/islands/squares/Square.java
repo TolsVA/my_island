@@ -1,7 +1,6 @@
 package ru.javarush.tolstikhin.my_island.islands.squares;
 
 import javafx.scene.control.ScrollBar;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 
@@ -20,15 +19,22 @@ public class Square extends VBox {
         this.x = (int)x;
         this.y = (int)y;
         this.setStyle("-fx-background-color: #14b233;");
+        onClicked();
+        this.setPrefSize(50, 50);
+    }
+
+    private void onClicked() {
         this.setOnMouseClicked(e -> {
             System.out.println("Я ячейка i = " + this.x + ", j = " + this.y);
             for (List<Organism> values : organismMapList.values()) {
                 String icon = values.getFirst().getIcon();
                 int size = values.size();
                 System.out.println(icon + " - " + size);
+                for (Organism value : values) {
+                    System.out.println("\t\t" + value);
+                }
             }
         });
-        this.setPrefSize(50, 50);
     }
 
     public Map<Class<? extends Organism>, List<Organism>> getOrganismList() {

@@ -23,7 +23,7 @@
             <Font name="Candara Bold Italic" size="14.0" />
          </font>
       </Label>
-      <ScrollPane fx:id="scrPane" layoutY="69.0" prefHeight="486.0" prefWidth="1100.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="170.0" AnchorPane.topAnchor="69.0" />
+      <ScrollPane fx:id="scrPane" layoutX="7.0" layoutY="62.0" prefHeight="486.0" prefWidth="1100.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="163.0" AnchorPane.topAnchor="62.0" />
       <ScrollBar fx:id="scrColor" layoutX="456.0" layoutY="37.0" prefHeight="14.0" prefWidth="400.0" />
       <GridPane fx:id="gridPaneFull" layoutX="1050.0" layoutY="111.0" prefHeight="381.0" prefWidth="148.0">
         <columnConstraints>

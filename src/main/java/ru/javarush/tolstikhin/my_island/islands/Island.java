@@ -26,7 +26,7 @@ public class Island  extends GridPane {
         super.add(node, x, y);
         super.setHgap(1);
         super.setVgap(1);
-        squares[x][y] = new Square(x, y);
+        squares[x][y] = (Square) node;
     }
 
     public Square getSquares(int x, int y) {
@@ -36,6 +36,7 @@ public class Island  extends GridPane {
     public Square[][] getSquares() {
         return squares;
     }
+
 
     public String getName() {
         return name;

@@ -10,26 +10,14 @@ import ru.javarush.tolstikhin.my_island.app.Viewable;
 
 public class MainWindow extends Application implements Viewable {
 
-
     @Override
     public void start(Stage stage) throws Exception {
-//        Application.Parameters params = getParameters();
-//        List<String> unnamedParams = getParameters().getUnnamed();
-//        System.out.println(unnamedParams.get(0));
         MainController.setStage(stage);
         FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("main-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
-
-
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("/fxml/wildIsland.fxml"));
-//        BorderPane page = (BorderPane) loader.load();
-//        WildIslandController controller = loader.getController();
-//        wildIslandStage.setScene(new Scene(page));
-//        wildIslandStage.show();
     }
 
     @Override
