@@ -4,6 +4,7 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.VBox;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,11 +28,13 @@ public class Square extends VBox {
         this.setOnMouseClicked(e -> {
             System.out.println("Я ячейка i = " + this.x + ", j = " + this.y);
             for (List<Organism> values : organismMapList.values()) {
-                String icon = values.getFirst().getIcon();
-                int size = values.size();
-                System.out.println(icon + " - " + size);
-                for (Organism value : values) {
-                    System.out.println("\t\t" + value);
+                if (!values.isEmpty()) {
+                    String icon = values.getFirst().getIcon();
+                    int size = values.size();
+                    System.out.println(icon + " - " + size);
+                    for (Organism value : values) {
+                        System.out.println("\t\t" + value);
+                    }
                 }
             }
         });

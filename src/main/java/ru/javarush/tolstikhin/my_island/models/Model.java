@@ -4,13 +4,12 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import ru.javarush.tolstikhin.my_island.islands.Island;
 import ru.javarush.tolstikhin.my_island.islands.squares.Square;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Constants;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.Animal;
-import ru.javarush.tolstikhin.my_island.threads.MyCallingBackClass;
+import ru.javarush.tolstikhin.my_island.threads.MyCallbackClass;
 import ru.javarush.tolstikhin.my_island.threads.MyThread;
 
 import java.lang.reflect.InvocationTargetException;
@@ -29,7 +28,7 @@ public class Model implements Presentable {
 
     @Override
     public GridPane createIsland(int x, int y, String nameIsland, Scene scene) {
-        island = new Island(x, y, nameIsland);
+        island = Island.getInstance(x, y, nameIsland, scene);
         executorService = Executors.newFixedThreadPool(4);
 
         for (int i = 0; i < x; i++) {
@@ -38,14 +37,7 @@ public class Model implements Presentable {
             }
         }
 
-        executorService.execute(() -> {
-            int index = 0;
-            for (Integer value : island.getOrganismFullLinkedHashMap().values()) {
-                Text text = (Text) scene.lookup("#f" + index);
-                text.setText(String.valueOf(value));
-                index++;
-            }
-        });
+        executorService.execute(() -> island.fullForm());
 
         executorService.shutdown();
 
@@ -54,8 +46,8 @@ public class Model implements Presentable {
 
     @Override
     public void start() {
-        executorService = Executors.newFixedThreadPool(4);
-        MyCallingBackClass myCallingBack = new MyCallingBackClass(executorService);
+        executorService = Executors.newFixedThreadPool(8);
+        MyCallbackClass myCallingBack = new MyCallbackClass(executorService, island);
 
         Thread thread = new Thread(new MyThread(myCallingBack) {
             @Override
@@ -63,9 +55,11 @@ public class Model implements Presentable {
                 Square[][] squares = island.getSquares();
                 for (int x = 0; x < squares.length; x++) {
                     for (int y = 0; y < squares[x].length; y++) {
-                        Map<Class<? extends Organism>, List<Organism>> organismList = squares[x][y].getOrganismList();
-                        if (!organismList.isEmpty()) {
-                            myCallingBack.callingBack(organismList, x, y);
+                        Map<Class<? extends Organism>, List<Organism>> squareClassListOrganism = squares[x][y].getOrganismList();
+                        for (List<Organism> organisms : squareClassListOrganism.values()) {
+                            for (int i = 0; i < organisms.size(); i++) {
+                                myCallingBack.callingBack(squareClassListOrganism, x, y, organisms.get(i), organisms);
+                            }
                         }
                     }
                 }
@@ -73,10 +67,13 @@ public class Model implements Presentable {
         });
         thread.start();
 
-//        for (int i = 0; i < 1000; i++) {
-//            System.out.println("iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
-//        }
+        try {
+            thread.join();
+        } catch (InterruptedException e) {
+            thread.interrupt();
+        }
 
+        executorService.execute(() -> island.fullForm());
     }
 
     @Override
@@ -85,14 +82,11 @@ public class Model implements Presentable {
     }
 
     private Square gridPaneFill(int x, int y, Scene scene) {
-
         Square squareVBox = new Square(x, y);
         Map<Class<? extends Organism>, List<Organism>> organismList = squareVBox.getOrganismList();
-
         ScrollBar scrollBar = (ScrollBar) scene.lookup("#scrColor");
         squareVBox.setScrollBar(scrollBar);
         squareVBox.setPadding(new Insets(0));
-
         executorService.execute(() -> {
             int count;
             for (Map.Entry<Class<? extends Organism>, Integer> entry : mapOrganismClassCount.entrySet()) {
@@ -101,12 +95,7 @@ public class Model implements Presentable {
                 List<Organism> listOrganism = new ArrayList<>();
                 fillListOrganism(listOrganism, aClass, count);
                 organismList.put(aClass, listOrganism);
-                var islandOrganismMap = island.getOrganismFullLinkedHashMap();
-                if (island.getOrganismFullLinkedHashMap().containsKey(aClass)) {
-                    islandOrganismMap.put(aClass, islandOrganismMap.get(aClass) + listOrganism.size());
-                } else {
-                    islandOrganismMap.put(aClass, listOrganism.size());
-                }
+                island.countPositions(Integer::sum, aClass, listOrganism.size());
             }
         });
         return squareVBox;
@@ -126,7 +115,6 @@ public class Model implements Presentable {
                 Map<Class<? extends Organism>, Integer> food = animal.getFood();
                 food.putAll(classIntegerMap);
             }
-
             listOrganism.add(organism);
         }
     }

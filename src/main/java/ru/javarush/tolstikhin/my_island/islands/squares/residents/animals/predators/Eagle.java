@@ -8,6 +8,7 @@ public class Eagle extends Animal implements CanHunt {// орёл
         setName("Орёл");
         setIcon("\uD83E\uDD85");
         setMaxWeight(6);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(20);
         setMaxSpeed(3);
         setMaxFood(1);

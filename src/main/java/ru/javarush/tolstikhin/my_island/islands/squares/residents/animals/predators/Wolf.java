@@ -8,6 +8,7 @@ public class Wolf extends Animal implements CanHunt {
         setName("Волк");
         setIcon("\uD83D\uDC3A");
         setMaxWeight(50);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(30);
         setMaxSpeed(3);
         setMaxFood(8);

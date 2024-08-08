@@ -8,6 +8,7 @@ public class Caterpillar extends Animal implements EatPlants {
         setName("Гусеница");
         setIcon("\uD83D\uDC1B");
         setMaxWeight(0.01);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(1000);
         setMaxSpeed(0);
         setMaxFood(0.001);

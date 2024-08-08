@@ -8,6 +8,7 @@ public class Deer extends Animal implements EatPlants {
         setName("Олень");
         setIcon("\uD83E\uDD8C");
         setMaxWeight(300);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(20);
         setMaxSpeed(4);
         setMaxFood(50);

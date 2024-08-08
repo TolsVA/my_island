@@ -1,9 +1,9 @@
 package ru.javarush.tolstikhin.my_island.threads;
 
 public class MyThread implements Runnable{
-    private MyCallingBack myCallingBack;
+    private MyCallbackTask myCallingBack;
 
-    public MyThread(MyCallingBack myCallingBack) {
+    public MyThread(MyCallbackTask myCallingBack) {
         this.myCallingBack = myCallingBack;
     }
 

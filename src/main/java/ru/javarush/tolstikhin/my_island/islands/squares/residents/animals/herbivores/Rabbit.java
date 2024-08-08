@@ -8,6 +8,7 @@ public class Rabbit extends Animal implements EatPlants {
         setName("Кролик");
         setIcon("\uD83D\uDC07");
         setMaxWeight(2);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(150);
         setMaxSpeed(2);
         setMaxFood(0.45);

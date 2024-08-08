@@ -8,6 +8,7 @@ public class Horse extends Animal implements EatPlants {
         setName("Лошадь");
         setIcon("\uD83D\uDC0E");
         setMaxWeight(400);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(20);
         setMaxSpeed(4);
         setMaxFood(60);

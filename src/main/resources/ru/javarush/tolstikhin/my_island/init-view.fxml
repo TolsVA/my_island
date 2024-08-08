@@ -54,7 +54,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Text fx:id="f0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.00000000000023" GridPane.columnIndex="1">
+            <Text fx:id="buffalo" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="81.00000000000023" GridPane.columnIndex="1">
                <font>
                   <Font size="14.0" />
                </font>
@@ -64,7 +64,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Text fx:id="f1" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Text fx:id="bear" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
                </font>
@@ -74,7 +74,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Text fx:id="f2" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Text fx:id="horse" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="14.0" />
                </font>
@@ -84,7 +84,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Text fx:id="f3" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Text fx:id="deer" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="14.0" />
                </font>
@@ -94,7 +94,7 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Text fx:id="f4" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Text fx:id="boar" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font size="14.0" />
                </font>
@@ -119,47 +119,47 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Text fx:id="f5" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="5">
+            <Text fx:id="sheep" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fx:id="f7" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="7">
+            <Text fx:id="wolf" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fx:id="f8" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="8">
+            <Text fx:id="boa" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fx:id="f9" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="9">
+            <Text fx:id="fox" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fx:id="f10" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="10">
+            <Text fx:id="eagle" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="10">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fx:id="f11" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="11">
+            <Text fx:id="rabbit" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="11">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fx:id="f13" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="13">
+            <Text fx:id="mouse" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="13">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fx:id="f14" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="14">
+            <Text fx:id="caterpillar" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="14">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fx:id="f15" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="15">
+            <Text fx:id="plant" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="15">
                <font>
                   <Font size="14.0" />
                </font>
@@ -199,12 +199,12 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <Text fx:id="f6" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="6">
+            <Text fx:id="goat" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <font>
                   <Font size="14.0" />
                </font>
             </Text>
-            <Text fx:id="f12" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="12">
+            <Text fx:id="duck" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="71.00000000000023" GridPane.columnIndex="1" GridPane.rowIndex="12">
                <font>
                   <Font size="14.0" />
                </font>

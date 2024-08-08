@@ -9,6 +9,7 @@ public class Mouse extends Animal implements EatPlants, CanHunt {
         setName("Мыш");
         setIcon("\uD83D\uDC01");
         setMaxWeight(0.05);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(500);
         setMaxSpeed(1);
         setMaxFood(0.01);

@@ -8,6 +8,7 @@ public class Buffalo extends Animal implements EatPlants {
         setName("Буйвол");
         setIcon("\uD83D\uDC03");
         setMaxWeight(700);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(10);
         setMaxSpeed(3);
         setMaxFood(100);

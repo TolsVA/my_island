@@ -11,7 +11,7 @@ public abstract class Animal extends Organism {
     private int maxSpeed;  // Скорость перемещения, не более чем, клеток за ход.
     private double maxFood; // Сколько килограммов пищи нужно животному для полного насыщения.
     private double satiety; // сытность
-    private final String[] genders = {"masculine", "feminine"};
+    private final String[] genders = {"male", "female"};
     private final String gender = randomGender();  // пол
 
     public Map<Class<? extends Organism>, Integer> getFood(){
@@ -47,8 +47,10 @@ public abstract class Animal extends Organism {
             this.satiety = satiety;
         } else {
             this.satiety = this.satiety + satiety;
+            setWeight(satiety);
             if (this.satiety > maxFood){
                 this.satiety = maxFood;
+                setWeight(getMaxWeight() + satiety);
             }
         }
     }
@@ -74,8 +76,8 @@ public abstract class Animal extends Organism {
                 ", gender = '" + gender + '\'';
     }
 
-    public void eat(double eat) {
-        satiety = satiety + eat;
-        if (satiety > getMaxWeight()) satiety = getMaxWeight();
-    }
+//    public void eat(double eat) {
+//        satiety = satiety + eat;
+//        if (satiety > getMaxWeight()) satiety = getMaxWeight();
+//    }
 }

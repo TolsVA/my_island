@@ -8,6 +8,7 @@ public class Fox extends Animal implements CanHunt {
         setName("Лиса");
         setIcon("\uD83E\uDD8A");
         setMaxWeight(8);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(30);
         setMaxSpeed(2);
         setMaxFood(2);

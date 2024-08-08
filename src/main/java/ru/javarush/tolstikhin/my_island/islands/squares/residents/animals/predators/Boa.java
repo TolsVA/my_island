@@ -8,6 +8,7 @@ public class Boa extends Animal implements CanHunt {
         setName("Удав");
         setIcon("\uD83D\uDC0D");
         setMaxWeight(15);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(30);
         setMaxSpeed(1);
         setMaxFood(3);

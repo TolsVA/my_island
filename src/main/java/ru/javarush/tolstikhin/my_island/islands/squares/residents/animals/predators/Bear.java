@@ -8,9 +8,10 @@ public class Bear extends Animal implements CanHunt {
         setName("Медведь");
         setIcon("\uD83D\uDC3B");
         setMaxWeight(500);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(5);
         setMaxSpeed(2);
         setMaxFood(80);
-        setSatiety(getMaxFood()/2);
+        setSatiety(getMaxFood() / 2);
     }
 }

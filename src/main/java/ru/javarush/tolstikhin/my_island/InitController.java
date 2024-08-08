@@ -54,6 +54,9 @@ public class InitController {
         });
 //        exit.setOnAction(this::close);
 
+//        start.setOnMouseClicked(event -> {
+//            model.start();
+//        });
         start.setOnAction(event -> {
             model.start();
         });

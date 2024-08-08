@@ -8,6 +8,7 @@ public class Goat extends Animal implements EatPlants {
         setName("Коза");
         setIcon("\uD83D\uDC10");
         setMaxWeight(60);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(140);
         setMaxSpeed(3);
         setMaxFood(10);

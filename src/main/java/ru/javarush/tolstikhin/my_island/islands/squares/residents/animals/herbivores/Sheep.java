@@ -8,6 +8,7 @@ public class Sheep extends Animal implements EatPlants {
         setName("Овца");
         setIcon("\uD83D\uDC11");
         setMaxWeight(70);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(140);
         setMaxSpeed(3);
         setMaxFood(15);

@@ -9,6 +9,7 @@ public class Boar extends Animal implements EatPlants, CanHunt {
         setName("Кабан");
         setIcon("\uD83D\uDC17");
         setMaxWeight(400);
+        setWeight(getMaxWeight() / 2);
         setMaxAmount(50);
         setMaxSpeed(2);
         setMaxFood(50);
