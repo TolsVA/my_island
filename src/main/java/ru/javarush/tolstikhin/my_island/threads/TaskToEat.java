@@ -39,14 +39,17 @@ public class TaskToEat extends Task implements Runnable {
 
     private void eatAnimal(Animal animal) {
         Map<Class<? extends Organism>, Integer> food = animal.getFood();
-        List<Class<? extends Organism>> listEat = new ArrayList<>(food.keySet()); // Создаём лист того что можем сьесь
+        List<Class<? extends Organism>> listEat = new ArrayList<>(food.keySet()); // Создаём лист того что можем есть
         boolean foodAvailability = false;
         int index = 0;
         while (animal.getSatiety() < animal.getMaxFood() && index < listEat.size()) {
-            Class<? extends Organism> aClassEat = listEat.get(index);                // Определяем класс по index
+//            Class<? extends Organism> aClassEat = listEat.get(index);                 // Определяем класс по index
+            Class<? extends Organism> aClassEat = listEat.get(                        // Определяем класс рандомно
+                    ThreadLocalRandom.current().nextInt(0, listEat.size())
+            );
             List<Organism> organismsEat = squareClassListOrganism.get(aClassEat);     // Достаем список по классу
-            int probability = ThreadLocalRandom.current().nextInt(1, 101);    // Вероятность обеда
-            Integer requiredProbability = food.get(aClassEat);                            // Требуемая вероятность
+            int probability = ThreadLocalRandom.current().nextInt(1, 101);            // Вероятность обеда
+            Integer requiredProbability = food.get(aClassEat);                        // Требуемая вероятность
 
             synchronized (LOOK) {
                 if (!organismsEat.isEmpty()) {

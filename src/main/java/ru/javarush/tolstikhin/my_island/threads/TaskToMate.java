@@ -25,26 +25,27 @@ public class TaskToMate extends Task implements Runnable {
         if (organism instanceof Animal animal && animal.getGender().equals("female")) {
             boolean pairing = false;
             for (Organism organism1 : organisms) {
-                if (organism1 instanceof Animal animal1 && animal1.getGender().equals("male")) {
+                if (organism1 instanceof Animal animal1 && animal1.getGender().equals("male")
+                                && animal1.getMaxAmount() < organisms.size()) {
                     pairing = true;
                     break;
                 }
-
             }
-            addAnimal(animal, pairing);
+            if (pairing) addAnimal(animal);
         }
-
     }
 
-    private void addAnimal(Animal animal, boolean pairing) {
-        if (pairing) {
-            try {
-                organisms.add(animal.getClass().getDeclaredConstructor().newInstance());
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
-                     NoSuchMethodException e) {
-                throw new RuntimeException(e);
-            }
+    private void addAnimal(Animal animal) {
+
+        try {
+            organisms.add(animal.getClass().getDeclaredConstructor().newInstance());
+            island.countPositions(Integer::sum, animal.getClass(), 1);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
+                 NoSuchMethodException e) {
+            throw new RuntimeException(e);
         }
-        System.out.println(organisms.getLast().getIcon());
+        if (!organisms.isEmpty()) {
+            System.out.println(organisms.getLast().getIcon());
+        }
     }
 }

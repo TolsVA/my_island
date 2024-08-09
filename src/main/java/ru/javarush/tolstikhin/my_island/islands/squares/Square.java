@@ -26,7 +26,7 @@ public class Square extends VBox {
 
     private void onClicked() {
         this.setOnMouseClicked(e -> {
-            System.out.println("Я ячейка i = " + this.x + ", j = " + this.y);
+            System.out.println("Я ячейка X = " + this.x + ", y = " + this.y);
             for (List<Organism> values : organismMapList.values()) {
                 if (!values.isEmpty()) {
                     String icon = values.getFirst().getIcon();

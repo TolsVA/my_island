@@ -16,9 +16,9 @@ public class Island  extends GridPane{
     private final Square[][] squares;
     private Map<Class<? extends Organism>, Integer> organismFullLinkedHashMap = new LinkedHashMap<>();
 
-    private  static Island instance;
+//    private  static Island instance;
 
-    private Island(double x, double y, String name, Scene scene) {
+    public Island(double x, double y, String name, Scene scene) {
         super(x, y);
         this.name = name;
         this.scene = scene;
@@ -26,12 +26,12 @@ public class Island  extends GridPane{
     }
 
 
-    public static Island getInstance(double x, double y, String name, Scene scene){
-        if (instance == null) {
-            instance= new Island(x, y, name, scene);
-        }
-        return instance;
-    }
+//    public static Island getInstance(double x, double y, String name, Scene scene){
+//        if (instance == null) {
+//            instance= new Island(x, y, name, scene);
+//        }
+//        return instance;
+//    }
 
     @Override
     public void add(Node node, int x, int y) {

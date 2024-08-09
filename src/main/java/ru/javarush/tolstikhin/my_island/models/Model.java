@@ -28,12 +28,12 @@ public class Model implements Presentable {
 
     @Override
     public GridPane createIsland(int x, int y, String nameIsland, Scene scene) {
-        island = Island.getInstance(x, y, nameIsland, scene);
+        island = new Island(x, y, nameIsland, scene);
         executorService = Executors.newFixedThreadPool(4);
 
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                island.add(gridPaneFill(j, i, scene), i, j);
+                island.add(gridPaneFill(i, j, scene), i, j);
             }
         }
 
