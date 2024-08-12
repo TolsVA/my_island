@@ -5,13 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="650.0" style="-fx-background-color: #861010;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.javarush.tolstikhin.my_island.controllers.ErrorController">
-   <children>
-      <Label fx:id="textError" layoutX="14.0" layoutY="21.0" prefHeight="27.0" prefWidth="557.0" textFill="#fafafa">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Button fx:id="btnError" layoutX="592.0" layoutY="22.0" mnemonicParsing="false" text="OK" textFill="#861010" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0"
+            prefWidth="650.0" style="-fx-background-color: #861010;" xmlns="http://javafx.com/javafx/22"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ru.javarush.tolstikhin.my_island.controllers.ErrorController">
+   <Label fx:id="textError" layoutX="14.0" layoutY="21.0" prefHeight="27.0" prefWidth="557.0" textFill="#fafafa">
+      <font>
+         <Font size="18.0"/>
+      </font>
+   </Label>
+   <Button fx:id="btnError" layoutX="592.0" layoutY="22.0" mnemonicParsing="false" text="OK" textFill="#861010"/>
 </AnchorPane>

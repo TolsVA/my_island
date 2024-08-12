@@ -1,29 +1,27 @@
 package ru.javarush.tolstikhin.my_island.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import ru.javarush.tolstikhin.my_island.view.ErrorWindow;
-
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.stage.Stage;
 
 public class ErrorController {
 
     @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
-
-    @FXML
     private Button btnError;
 
-    @FXML
-    private Label textError;
+    private Stage stage;
 
     @FXML
     void initialize() {
-        btnError.setOnAction(e -> ErrorWindow.stage.close());
+        btnError.setOnAction(this::close);
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
+
+    private void close(ActionEvent e) {
+        stage.close();
     }
 }

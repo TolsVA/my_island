@@ -6,14 +6,16 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import ru.javarush.tolstikhin.my_island.controllers.ErrorController;
 
 import java.io.IOException;
 
-public class ErrorWindow  {
-    public static Stage stage;
+public class ErrorWindow {
 
-    public void start(Stage stage, String message)  {
-        ErrorWindow.stage = stage;
+//    private static String message;
+
+    public void start(String message)  {
+        Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(ErrorWindow.class.getResource("error-view.fxml"));
         Scene scene = null;
         try {
@@ -21,6 +23,9 @@ public class ErrorWindow  {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        ErrorController controller = fxmlLoader.getController();
+        controller.setStage(stage);
 
         Label label = (Label) scene.lookup("#textError");
         label.setText(message);

@@ -3,8 +3,6 @@ package ru.javarush.tolstikhin.my_island.models;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollBar;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import ru.javarush.tolstikhin.my_island.view.SquareShowWindow;
 import ru.javarush.tolstikhin.my_island.controllers.InitController;
 import ru.javarush.tolstikhin.my_island.islands.Island;
@@ -15,7 +13,6 @@ import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.Animal
 import ru.javarush.tolstikhin.my_island.threads.MyCallbackClass;
 import ru.javarush.tolstikhin.my_island.threads.MyThread;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +28,7 @@ public class Model implements Presentable {
     private ExecutorService executorService;
 
     @Override
-    public GridPane createIsland(int x, int y, String nameIsland, Scene scene, InitController controller) {
+    public Island createIsland(int x, int y, String nameIsland, Scene scene, InitController controller) {
         island = new Island(x, y, nameIsland, scene);
         executorService = Executors.newFixedThreadPool(4);
 
@@ -85,11 +82,7 @@ public class Model implements Presentable {
 
     @Override
     public void stop() {
-        try {
-            new SquareShowWindow().start(new Stage(), "Общая статистика", island.getOrganismFullLinkedHashMap());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        new SquareShowWindow().start("Общая статистика", island.getOrganismFullLinkedHashMap());
     }
 
     private Square gridPaneFill(int x, int y, Scene scene, int c, int i) {
@@ -99,13 +92,6 @@ public class Model implements Presentable {
         ScrollBar scrollBar = (ScrollBar) scene.lookup("#scrColor");
         squareVBox.setScrollBar(scrollBar);
         squareVBox.setPadding(new Insets(0));
-
-//        executorService.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//            }
-//        });
 
         executorService.execute(() -> {
             int count;

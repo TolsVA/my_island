@@ -7,6 +7,7 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 import ru.javarush.tolstikhin.my_island.models.Presentable;
+import ru.javarush.tolstikhin.my_island.view.SquareShowWindow;
 
 import java.net.URL;
 import java.util.ResourceBundle;

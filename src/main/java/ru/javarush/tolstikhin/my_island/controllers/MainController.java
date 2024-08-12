@@ -2,24 +2,15 @@ package ru.javarush.tolstikhin.my_island.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ru.javarush.tolstikhin.my_island.view.ErrorWindow;
 import ru.javarush.tolstikhin.my_island.view.InitWindow;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 public class MainController {
 
     private static final String MESSAGE = "Площадь острова должна быть заполнена целыми числами";
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TextField nameIsland;
@@ -37,7 +28,6 @@ public class MainController {
     private TextField yPoint;
 
     private Stage stage;
-    private Scene scene;
 
     @FXML
     void initialize() {
@@ -61,13 +51,16 @@ public class MainController {
         }
     }
 
+    private void close(ActionEvent event) {
+        stage.close();
+        System.exit(0);
+    }
+
     private void start(ActionEvent event) {
         if (!xPoint.getText().isEmpty() && isNumber(xPoint.getText())
                 && !yPoint.getText().isEmpty() && isNumber(yPoint.getText())) {
-
             try {
                 new InitWindow().start(
-                        new Stage(),
                         nameIsland.getText(),
                         Double.parseDouble(xPoint.getText()),
                         Double.parseDouble(yPoint.getText())
@@ -76,20 +69,7 @@ public class MainController {
                 throw new RuntimeException(e);
             }
         } else {
-            try {
-                new ErrorWindow().start(new Stage(), MESSAGE);
-            } catch (Exception ex) {
-                throw new RuntimeException(ex);
-            }
+            new ErrorWindow().start(MESSAGE);
         }
-    }
-
-    private void close(ActionEvent event) {
-        stage.close();
-        System.exit(0);
-    }
-
-    public void setScene(Scene scene) {
-        this.scene = scene;
     }
 }

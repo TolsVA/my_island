@@ -39,11 +39,7 @@ public class Square extends VBox {
         for (Map.Entry<Class<? extends Organism>, List<Organism>> classListEntry : organismMapList.entrySet()) {
             integerMap.put(classListEntry.getKey(),classListEntry.getValue().size());
         }
-        try {
-            new SquareShowWindow().start(new Stage(), nameSquare, integerMap);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex); // написать обработку
-        }
+        new SquareShowWindow().start(nameSquare, integerMap);
     }
 
 

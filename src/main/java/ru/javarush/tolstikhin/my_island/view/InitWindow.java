@@ -13,11 +13,12 @@ import ru.javarush.tolstikhin.my_island.models.Presentable;
 public class InitWindow implements Viewable {
     public static Presentable model;
 
-    public void start(Stage stage, String name, double x, double y) throws Exception {
+    public void start(String name, double x, double y) throws Exception {
 //        stage.initStyle(StageStyle.TRANSPARENT);
 //        scrollPane.setStyle(String.format("-fx-font-size: %dpx;", (int) (0.4 * 80)));
 //        label.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-//        Stage stage = new Stage();
+        Stage stage = new Stage();
+
 
         double width = 800;
         double height = 600;
