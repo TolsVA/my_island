@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2E3348;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.javarush.tolstikhin.my_island.controllers.MainController">
+   <children>
+      <AnchorPane layoutX="3.0" layoutY="88.0" prefHeight="309.0" prefWidth="593.0" style="-fx-background-color: #fafafa;">
+         <children>
+            <Button fx:id="stop" layoutX="184.0" layoutY="251.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="226.0" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 3;" text="Выйти из программы" textFill="#182557" />
+            <TextField layoutX="184.0" layoutY="107.0" prefHeight="7.0" prefWidth="226.0" promptText="Количество ячеек по оси X:" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 3;" fx:id="xPoint" />
+            <TextField fx:id="yPoint" layoutX="184.0" layoutY="141.0" prefHeight="25.0" prefWidth="226.0" promptText="Количество ячеек по оси Y:" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 3;" />
+            <Button id="start" fx:id="start" layoutX="184.0" layoutY="209.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="226.0" style="-fx-background-color: #fefefe; -fx-border-color: silver; -fx-border-radius: 3;" text="Запустить эмуляцию" textFill="#182557" />
+            <TextField fx:id="nameIsland" layoutX="184.0" layoutY="30.0" prefHeight="7.0" prefWidth="226.0" promptText="Название острова" style="-fx-background-color: #fafafa; -fx-border-color: silver; -fx-border-radius: 3;" />
+            <Label layoutX="184.0" layoutY="81.0" prefHeight="26.0" prefWidth="226.0" text="Площадь острова:" textAlignment="CENTER" textFill="#182557">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="151.0" layoutY="31.0" text="Симуляция острова" textAlignment="RIGHT" textFill="#fefefe">
+         <font>
+            <Font name="Times New Roman Bold" size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
