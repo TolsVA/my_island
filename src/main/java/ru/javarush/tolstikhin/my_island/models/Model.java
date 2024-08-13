@@ -3,6 +3,8 @@ package ru.javarush.tolstikhin.my_island.models;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollBar;
+import ru.javarush.tolstikhin.my_island.view.AddsElements;
+import ru.javarush.tolstikhin.my_island.view.FillsListOrganisms;
 import ru.javarush.tolstikhin.my_island.view.SquareShowWindow;
 import ru.javarush.tolstikhin.my_island.controllers.InitController;
 import ru.javarush.tolstikhin.my_island.islands.Island;
@@ -28,19 +30,43 @@ public class Model implements Presentable {
     private ExecutorService executorService;
 
     @Override
-    public Island createIsland(int x, int y, String nameIsland, Scene scene, InitController controller) {
-        island = new Island(x, y, nameIsland, scene);
+    public void createIsland(int x, int y, AddsElements addsElements, Scene scene, InitController controller, FillsListOrganisms fillsListOrganisms) {
+//        island = new Island(x, y, nameIsland, scene);
         executorService = Executors.newFixedThreadPool(4);
 
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                island.add(gridPaneFill(i, j, scene, x, y), i, j);
+                Square squareVBox = new Square(j, i, 50);
+                ScrollBar scrollBar = (ScrollBar) scene.lookup("#scrColor");
+                squareVBox.setScrollBar(scrollBar);
+                squareVBox.setPadding(new Insets(0));
+                addsElements.addSquare(squareVBox, i, j);
+                executorService.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        gridPaneFill(squareVBox, fillsListOrganisms);
+                    }
+                });
             }
         }
 
-//        executorService.execute(() -> island.fullForm());
+//
+////        executorService.execute(() -> island.fullForm());
         executorService.shutdown();
-        return island;
+//        return island;
+    }
+
+    private void gridPaneFill(Square squareVBox, FillsListOrganisms fillsListOrganisms) {
+        Map<Class<? extends Organism>, List<Organism>> organismList = squareVBox.getOrganismList();
+        int count;
+        for (Map.Entry<Class<? extends Organism>, Integer> entry : mapOrganismClassCount.entrySet()) {
+            Class<? extends Organism> aClass = entry.getKey();
+            count = ThreadLocalRandom.current().nextInt(1, mapOrganismClassCount.get(aClass) + 1);
+            List<Organism> listOrganism = new ArrayList<>();
+            fillListOrganism(listOrganism, aClass, count);
+            organismList.put(aClass, listOrganism);
+            fillsListOrganisms.fillsList(aClass, listOrganism);
+        }
     }
 
     @Override
@@ -83,28 +109,6 @@ public class Model implements Presentable {
     @Override
     public void stop() {
         new SquareShowWindow().start("Общая статистика", island.getOrganismFullLinkedHashMap());
-    }
-
-    private Square gridPaneFill(int x, int y, Scene scene, int c, int i) {
-        int in =468/i > 50 ? 468/i : 760/c;
-        Square squareVBox = new Square(x, y, c/1.62 < i ? in : 468/i);
-        Map<Class<? extends Organism>, List<Organism>> organismList = squareVBox.getOrganismList();
-        ScrollBar scrollBar = (ScrollBar) scene.lookup("#scrColor");
-        squareVBox.setScrollBar(scrollBar);
-        squareVBox.setPadding(new Insets(0));
-
-        executorService.execute(() -> {
-            int count;
-            for (Map.Entry<Class<? extends Organism>, Integer> entry : mapOrganismClassCount.entrySet()) {
-                Class<? extends Organism> aClass = entry.getKey();
-                count = ThreadLocalRandom.current().nextInt(1, mapOrganismClassCount.get(aClass) + 1);
-                List<Organism> listOrganism = new ArrayList<>();
-                fillListOrganism(listOrganism, aClass, count);
-                organismList.put(aClass, listOrganism);
-                island.countPositions((a, b) -> a + b, aClass, listOrganism.size());
-            }
-        });
-        return squareVBox;
     }
 
     private void fillListOrganism(List<Organism> listOrganism, Class<? extends Organism> aClass, int count) {

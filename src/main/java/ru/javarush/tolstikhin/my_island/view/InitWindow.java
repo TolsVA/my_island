@@ -8,7 +8,14 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import ru.javarush.tolstikhin.my_island.app.Viewable;
 import ru.javarush.tolstikhin.my_island.controllers.InitController;
+import ru.javarush.tolstikhin.my_island.islands.Island;
+import ru.javarush.tolstikhin.my_island.islands.squares.Square;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import ru.javarush.tolstikhin.my_island.models.Presentable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
 
 public class InitWindow implements Viewable {
     public static Presentable model;
@@ -36,10 +43,21 @@ public class InitWindow implements Viewable {
         ScrollPane scrollPane = (ScrollPane) scene.lookup("#scrPane");
         stage.setOnShown(e -> scrollPane.lookup(".viewport").setStyle("-fx-background-color: #bdd0bf;"));
 
-//        Label nameIsland = (Label) scene.lookup("#nameIsland");
-//        nameIsland.setText(name);
 
-        GridPane island = model.createIsland((int) x, (int) y, name, scene, controller);
+//        GridPane island = model.createIsland((int) x, (int) y, name, scene, controller);
+
+        Island island = new Island(x, y, name, scene);
+
+        AddsElements addsElements = new AddsElements() {
+            @Override
+            public void addSquare(Square square, int x, int y) {
+                island.add(square, x, y);
+            }
+        };
+
+        FillsListOrganisms fillsListOrganisms = (aClass, listOrganism) -> island.countPositions((a, b) -> a + b, aClass, listOrganism.size());
+
+        model.createIsland((int) x, (int) y, addsElements, scene, controller, fillsListOrganisms);
 
         scrollPane.setContent(island);
         island.setGridLinesVisible(true);
