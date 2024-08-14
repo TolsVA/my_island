@@ -10,12 +10,13 @@ import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import ru.javarush.tolstikhin.my_island.models.Presentable;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public class SquareShowWindow {
     public static Presentable model;
 
-    public void start(String nameSquare, Map<Class<? extends Organism>, Integer> integerMap){
+    public void start(String nameSquare, Map<Class<? extends Organism>, List<Organism>> listMap){
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(SquareShowWindow.class.getResource("square_show.fxml"));
         Scene scene = null;
@@ -30,9 +31,10 @@ public class SquareShowWindow {
         SquareShowController controller = fxmlLoader.getController();
         controller.setStage(stage);
 
-        for (var classListEntry : integerMap.entrySet()) {
+        for (var classListEntry : listMap.entrySet()) {
             Label label = (Label) scene.lookup("#" + classListEntry.getKey().getSimpleName().toLowerCase());
-            label.setText(" " + String.format(label.getText(), classListEntry.getValue()));
+            String[] split = label.getText().split(" {2}");
+            label.setText(split[0] + "  " + classListEntry.getValue().size());
         }
 
         stage.initModality(Modality.APPLICATION_MODAL);

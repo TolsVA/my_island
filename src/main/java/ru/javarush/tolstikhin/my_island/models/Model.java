@@ -5,7 +5,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ScrollBar;
 import ru.javarush.tolstikhin.my_island.view.AddsElements;
 import ru.javarush.tolstikhin.my_island.view.FillsListOrganisms;
-import ru.javarush.tolstikhin.my_island.view.SquareShowWindow;
 import ru.javarush.tolstikhin.my_island.controllers.InitController;
 import ru.javarush.tolstikhin.my_island.islands.Island;
 import ru.javarush.tolstikhin.my_island.islands.squares.Square;
@@ -13,7 +12,7 @@ import ru.javarush.tolstikhin.my_island.islands.squares.residents.Constants;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.Animal;
 import ru.javarush.tolstikhin.my_island.threads.MyCallbackClass;
-import ru.javarush.tolstikhin.my_island.threads.MyThread;
+
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
@@ -30,8 +29,8 @@ public class Model implements Presentable {
     private ExecutorService executorService;
 
     @Override
-    public void createIsland(int x, int y, AddsElements addsElements, Scene scene, InitController controller, FillsListOrganisms fillsListOrganisms) {
-//        island = new Island(x, y, nameIsland, scene);
+    public void createIsland(Island island, int x, int y, AddsElements addsElements, Scene scene, FillsListOrganisms fillsListOrganisms) {
+        this.island = island;
         executorService = Executors.newFixedThreadPool(4);
 
         for (int i = 0; i < x; i++) {
@@ -41,19 +40,11 @@ public class Model implements Presentable {
                 squareVBox.setScrollBar(scrollBar);
                 squareVBox.setPadding(new Insets(0));
                 addsElements.addSquare(squareVBox, i, j);
-                executorService.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        gridPaneFill(squareVBox, fillsListOrganisms);
-                    }
-                });
+                executorService.execute(() -> gridPaneFill(squareVBox, fillsListOrganisms));
             }
         }
-
-//
-////        executorService.execute(() -> island.fullForm());
         executorService.shutdown();
-//        return island;
+        System.out.println("Всё");
     }
 
     private void gridPaneFill(Square squareVBox, FillsListOrganisms fillsListOrganisms) {
@@ -65,7 +56,7 @@ public class Model implements Presentable {
             List<Organism> listOrganism = new ArrayList<>();
             fillListOrganism(listOrganism, aClass, count);
             organismList.put(aClass, listOrganism);
-            fillsListOrganisms.fillsList(aClass, listOrganism);
+            fillsListOrganisms.fillsList(aClass);
         }
     }
 
@@ -74,41 +65,23 @@ public class Model implements Presentable {
         executorService = Executors.newFixedThreadPool(8);
         MyCallbackClass myCallingBack = new MyCallbackClass(executorService, island);
 
-        Thread thread = new Thread(new MyThread(myCallingBack) {
-            @Override
-            public void run() {
-                Square[][] squares = island.getSquares();
-                for (int x = 0; x < squares.length; x++) {
-                    for (int y = 0; y < squares[x].length; y++) {
-                        Map<Class<? extends Organism>, List<Organism>> squareClassListOrganism = squares[x][y].getOrganismList();
-                        for (List<Organism> organisms : squareClassListOrganism.values()) {
-                            for (int i = 0; i < organisms.size(); i++) {
-                                myCallingBack.callingBack(squareClassListOrganism, x, y, organisms.get(i), organisms);
-                            }
-                        }
+        Square[][] squaresTwo = island.getSquares();
+        for (Square[] squares : squaresTwo) {
+            for (Square square : squares) {
+                Map<Class<? extends Organism>, List<Organism>> squareClassListOrganism = square.getOrganismList();
+                for (List<Organism> organisms : squareClassListOrganism.values()) {
+                    for (int i = 0; i < organisms.size(); i++) {
+                        myCallingBack.callingBack(square, squareClassListOrganism, organisms.get(i), organisms);
                     }
                 }
             }
-        });
-        thread.start();
-
-        try {
-            thread.join();
-        } catch (InterruptedException e) {
-            thread.interrupt();
         }
-
-//        executorService.execute(() -> island.fullForm());
-//        executorService.execute(() -> Platform.runLater(() -> island.fullForm()));
-
-        executorService.shutdown();
-
-//        island.fullForm();
+        System.out.println("Всё - всё");
     }
 
     @Override
     public void stop() {
-        new SquareShowWindow().start("Общая статистика", island.getOrganismFullLinkedHashMap());
+        executorService.shutdownNow();
     }
 
     private void fillListOrganism(List<Organism> listOrganism, Class<? extends Organism> aClass, int count) {

@@ -1,11 +1,11 @@
 package ru.javarush.tolstikhin.my_island.islands.squares.residents;
 
-public abstract class Organism implements Cloneable {
+public abstract class Organism {
     private String name;
     private String icon;
-    private double maxWeight; // Вес одного животного, кг.
+    private double maxWeight;        // Максимальный вес одного животного, кг.
     private double weight;
-    private int maxAmount; // 	Максимальное количество животных этого вида на одной клетке.
+    private int maxAmount;           // Максимальное количество животных этого вида на одной клетке.
 
     @Override
     public String toString() {
@@ -26,14 +26,10 @@ public abstract class Organism implements Cloneable {
             this.weight = weight;
         } else {
             this.weight = this.weight + weight;
-            if (maxWeight < this.weight) {
+            if (this.weight > maxWeight) {
                 this.weight = maxWeight;
             }
         }
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
@@ -62,16 +58,5 @@ public abstract class Organism implements Cloneable {
 
     public void setMaxAmount(int maxAmount) {
         this.maxAmount = maxAmount;
-    }
-
-    @Override
-    public Organism clone() {
-        try {
-            Organism clone = (Organism) super.clone();
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
-            return clone;
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError();
-        }
     }
 }

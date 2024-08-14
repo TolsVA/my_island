@@ -5,8 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import ru.javarush.tolstikhin.my_island.Main;
-import ru.javarush.tolstikhin.my_island.controllers.InitController;
 import ru.javarush.tolstikhin.my_island.controllers.MainController;
 
 import java.io.IOException;

@@ -26,7 +26,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="buffalo" prefHeight="107.0" prefWidth="143.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🐃  %d" textOverrun="CLIP">
+            <Label fx:id="buffalo" prefHeight="107.0" prefWidth="143.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🐃  " textOverrun="CLIP">
                <font>
                   <Font size="18.0" />
                </font>
@@ -37,7 +37,7 @@
                   <Insets />
                </opaqueInsets>
             </Label>
-            <Label fx:id="bear" prefHeight="99.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🐻  %d" GridPane.columnIndex="1">
+            <Label fx:id="bear" prefHeight="99.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🐻  " GridPane.columnIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -45,7 +45,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="horse" prefHeight="106.0" prefWidth="139.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🐎  %d" GridPane.columnIndex="2">
+            <Label fx:id="horse" prefHeight="106.0" prefWidth="139.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🐎  " GridPane.columnIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
@@ -53,7 +53,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="deer" prefHeight="102.0" prefWidth="153.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🦌  %d" GridPane.columnIndex="3">
+            <Label fx:id="deer" prefHeight="102.0" prefWidth="153.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🦌  " GridPane.columnIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -61,7 +61,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="boar" prefHeight="120.0" prefWidth="153.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🐗  %d" GridPane.rowIndex="1">
+            <Label fx:id="boar" prefHeight="120.0" prefWidth="153.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🐗  " GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -69,7 +69,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="sheep" prefHeight="108.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🐑  %d" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="sheep" prefHeight="108.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🐑  " GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -77,7 +77,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="goat" prefHeight="116.0" prefWidth="135.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🐐  %d" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="goat" prefHeight="116.0" prefWidth="135.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🐐  " GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -85,7 +85,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="wolf" prefHeight="112.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🐺  %d" GridPane.columnIndex="3" GridPane.rowIndex="1">
+            <Label fx:id="wolf" prefHeight="112.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🐺  " GridPane.columnIndex="3" GridPane.rowIndex="1">
                <font>
                   <Font size="18.0" />
                </font>
@@ -93,7 +93,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="boa" prefHeight="113.0" prefWidth="147.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🐍  %d" GridPane.rowIndex="2">
+            <Label fx:id="boa" prefHeight="113.0" prefWidth="147.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🐍  " GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
@@ -101,7 +101,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="fox" prefHeight="107.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🦊  %d" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="fox" prefHeight="107.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🦊  " GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
@@ -109,7 +109,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="eagle" prefHeight="110.0" prefWidth="138.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🦅  %d" GridPane.columnIndex="3" GridPane.rowIndex="2">
+            <Label fx:id="eagle" prefHeight="110.0" prefWidth="138.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🦅  " GridPane.columnIndex="3" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>
@@ -117,7 +117,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="duck" prefHeight="119.0" prefWidth="141.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🦆  %d" GridPane.rowIndex="3">
+            <Label fx:id="duck" prefHeight="119.0" prefWidth="141.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🦆  " GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -125,7 +125,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="mouse" prefHeight="60.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🐁  %d" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="mouse" prefHeight="60.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🐁  " GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -133,7 +133,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="caterpillar" prefHeight="114.0" prefWidth="145.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🐛  %d" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Label fx:id="caterpillar" prefHeight="114.0" prefWidth="145.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🐛  " GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -141,7 +141,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="plant" prefHeight="119.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🌿  %d" textFill="#188a29" GridPane.columnIndex="3" GridPane.rowIndex="3">
+            <Label fx:id="plant" prefHeight="119.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🌿  " textFill="#188a29" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <font>
                   <Font size="18.0" />
                </font>
@@ -149,7 +149,7 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="rabbit" prefHeight="117.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text="🐇  %d" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label fx:id="rabbit" prefHeight="117.0" prefWidth="115.0" style="-fx-border-color: #000000; -fx-background-color: #ebe7e7; -fx-border-radius: 5;" text=" 🐇  " GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font size="18.0" />
                </font>

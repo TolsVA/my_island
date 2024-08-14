@@ -9,15 +9,14 @@ import java.util.List;
 import java.util.Map;
 
 public class TaskToMate extends Task implements Runnable {
+    public static final Object LOOK = new Object();
+
     public TaskToMate(
             Map<Class<? extends Organism>, List<Organism>> squareClassListOrganism,
-            int x,
-            int y,
             Organism organism,
-            List<Organism> organisms,
-            Island island
+            List<Organism> organisms
     ) {
-        super(squareClassListOrganism, x, y, organism, organisms, island);
+        super(squareClassListOrganism, organism, organisms);
     }
 
     @Override
@@ -26,19 +25,22 @@ public class TaskToMate extends Task implements Runnable {
             boolean pairing = false;
             for (int i = 0; i < organisms.size(); i++) {
                 if ( organisms.get(i) instanceof Animal aAnimal && aAnimal.getGender().equals("male")
-                        && aAnimal.getMaxAmount() < organisms.size()) {
+                        && aAnimal.getMaxAmount() > organisms.size()) {
                     pairing = true;
                     break;
                 }
             }
-            if (pairing) addAnimal(animal);
+            synchronized (LOOK) {
+                if (pairing) addAnimal(animal);
+            }
         }
     }
 
     private void addAnimal(Animal animal) {
         try {
-            organisms.add(animal.getClass().getDeclaredConstructor().newInstance());
-            island.countPositions(Integer::sum, animal.getClass(), 1);
+            Animal newAnimal = animal.getClass().getDeclaredConstructor().newInstance();
+            organisms.add(newAnimal);
+            System.out.println(newAnimal.getIcon() + " - родился");
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                  NoSuchMethodException e) {
             throw new RuntimeException(e);
