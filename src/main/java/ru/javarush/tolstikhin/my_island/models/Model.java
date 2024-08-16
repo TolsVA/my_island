@@ -32,11 +32,10 @@ public class Model implements Presentable {
     public void createIsland(Island island, int x, int y, AddsElements addsElements, Scene scene, FillsListOrganisms fillsListOrganisms) {
         this.island = island;
         executorService = Executors.newFixedThreadPool(4);
-
+        ScrollBar scrollBar = (ScrollBar) scene.lookup("#scrColor");
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
-                Square squareVBox = new Square(j, i, 50);
-                ScrollBar scrollBar = (ScrollBar) scene.lookup("#scrColor");
+                Square squareVBox = new Square(i, j, 50);
                 squareVBox.setScrollBar(scrollBar);
                 squareVBox.setPadding(new Insets(0));
                 addsElements.addSquare(squareVBox, i, j);
