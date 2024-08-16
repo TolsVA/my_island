@@ -1,6 +1,5 @@
 package ru.javarush.tolstikhin.my_island.threads;
 
-import ru.javarush.tolstikhin.my_island.islands.Island;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.Animal;
 
@@ -8,7 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
-public class TaskToMate extends Task implements Runnable {
+public class TaskToMate extends Task {
     public static final Object LOOK = new Object();
 
     public TaskToMate(

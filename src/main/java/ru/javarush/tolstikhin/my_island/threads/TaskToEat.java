@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TaskToEat extends Task implements Runnable {
+public class TaskToEat extends Task {
     public static final Object LOOK = new Object();
     private final Island island;
     public TaskToEat(

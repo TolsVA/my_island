@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class TaskToChangeLocation extends Task implements Runnable{
+public class TaskToChangeLocation extends Task {
     private final int[] coordinates;
     private final int[] directions = {-1, 1};
     private final Island island;

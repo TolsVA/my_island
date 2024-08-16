@@ -6,7 +6,7 @@ import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import java.util.List;
 import java.util.Map;
 
-public abstract class Task {
+public abstract class Task implements Runnable{
     protected final Map<Class<? extends Organism>, List<Organism>> squareClassListOrganism;
     protected Organism organism;
     protected List<Organism> organisms;
