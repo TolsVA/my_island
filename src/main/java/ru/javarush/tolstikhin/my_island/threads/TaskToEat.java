@@ -14,18 +14,17 @@ public class TaskToEat extends Task {
     private final Island island;
     public TaskToEat(
             Map<Class<? extends Organism>, List<Organism>> squareClassListOrganism,
-            Organism organism,
+            Animal animal,
             List<Organism> organisms,
             Island island
     ) {
-        super(squareClassListOrganism, organism, organisms);
+        super(squareClassListOrganism, animal, organisms);
         this.island = island;
     }
 
     @Override
     public void run() {
-        if (organism != null && squareClassListOrganism.get(organism.getClass()).contains(organism) &&
-                organism instanceof Animal animal) {
+        if (animal != null && squareClassListOrganism.get(animal.getClass()).contains(animal)) {
             animal.setSatiety(-(animal.getMaxFood() > 0 ? animal.getMaxFood() / 10 : 0));
             if (animal.getSatiety() < animal.getMaxFood()) {
                 boolean foodAvailability = false;

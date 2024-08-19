@@ -1,4 +1,4 @@
-package ru.javarush.tolstikhin.my_island;
+package ru.javarush.tolstikhin.my_island.test;
 
 import javafx.application.Application;
 import javafx.concurrent.Task;

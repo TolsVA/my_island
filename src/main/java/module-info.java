@@ -9,4 +9,6 @@ module ru.javarush.tolstikhin.my_island {
     opens ru.javarush.tolstikhin.my_island.controllers to javafx.fxml;
     exports ru.javarush.tolstikhin.my_island.view;
     opens ru.javarush.tolstikhin.my_island.view to javafx.fxml;
+    exports ru.javarush.tolstikhin.my_island.test;
+    opens ru.javarush.tolstikhin.my_island.test to javafx.fxml;
 }

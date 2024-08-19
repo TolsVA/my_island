@@ -62,8 +62,8 @@ public class MainController {
             try {
                 new InitWindow().start(
                         nameIsland.getText(),
-                        Double.parseDouble(yPoint.getText()),
-                        Double.parseDouble(xPoint.getText())
+                        Double.parseDouble(xPoint.getText()),
+                        Double.parseDouble(yPoint.getText())
                 );
             } catch (Exception e) {
                 throw new RuntimeException(e);

@@ -3,6 +3,7 @@ package ru.javarush.tolstikhin.my_island.threads;
 import ru.javarush.tolstikhin.my_island.islands.Island;
 import ru.javarush.tolstikhin.my_island.islands.squares.Square;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
+import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.Animal;
 
 import java.util.List;
 import java.util.Map;
@@ -23,8 +24,11 @@ public class MyCallbackClass implements MyCallbackTask {
             Organism organism,
             List<Organism> organisms
     ) {
-        executorService.execute(new TaskToEat(squareClassListOrganism, organism, organisms, island));                    // задача есть или умирать от голода
-        executorService.execute(new TaskToMate(squareClassListOrganism, organism, organisms));                           // задача размножаться
-        executorService.execute(new TaskToChangeLocation(square, squareClassListOrganism, organism, organisms, island)); // задача передвигаться
+        if (organism instanceof Animal animal && !animal.isFlag()) {
+            executorService.execute(new TaskToEat(squareClassListOrganism, animal, organisms, island));                   // задача есть
+            executorService.execute(new TaskToDie(squareClassListOrganism, animal, organisms, island));                   // задача умирать от голода
+            executorService.execute(new TaskToMate(squareClassListOrganism, animal, organisms));                          // задача размножаться
+            executorService.execute(new TaskToChangeLocation(square, squareClassListOrganism, animal, organisms, island));// задача передвигаться
+        }
     }
 }

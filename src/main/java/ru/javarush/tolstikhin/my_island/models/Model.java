@@ -53,7 +53,11 @@ public class Model implements Presentable {
             Class<? extends Organism> aClass = entry.getKey();
             count = ThreadLocalRandom.current().nextInt(1, mapOrganismClassCount.get(aClass) + 1);
             List<Organism> listOrganism = new ArrayList<>();
-            fillListOrganism(listOrganism, aClass, count);
+            try {
+                fillListOrganism(listOrganism, aClass, count);
+            } catch (RuntimeException e) {
+                fillListOrganism(listOrganism, aClass, count);
+            }
             organismList.put(aClass, listOrganism);
             fillsListOrganisms.fillsList(aClass);
         }
@@ -61,21 +65,29 @@ public class Model implements Presentable {
 
     @Override
     public void start() {
-        executorService = Executors.newFixedThreadPool(8);
+        executorService = Executors.newFixedThreadPool(20);
         MyCallbackClass myCallingBack = new MyCallbackClass(executorService, island);
 
-        Square[][] squaresTwo = island.getSquares();
-        for (Square[] squares : squaresTwo) {
-            for (Square square : squares) {
-                Map<Class<? extends Organism>, List<Organism>> squareClassListOrganism = square.getOrganismList();
-                for (List<Organism> organisms : squareClassListOrganism.values()) {
-                    for (int i = 0; i < organisms.size(); i++) {
-                        myCallingBack.callingBack(square, squareClassListOrganism, organisms.get(i), organisms);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Square[][] squaresTwo = island.getSquares();
+                for (Square[] squares : squaresTwo) {
+                    for (Square square : squares) {
+                        Map<Class<? extends Organism>, List<Organism>> squareClassListOrganism = square.getOrganismList();
+                        for (List<Organism> organisms : squareClassListOrganism.values()) {
+                            for (int i = 0; i < organisms.size(); i++) {
+                                myCallingBack.callingBack(square, squareClassListOrganism, organisms.get(i), organisms);
+                            }
+                        }
                     }
                 }
             }
-        }
-        System.out.println("Всё - всё");
+        }).start();
+
+//        for (int i = 0; i < 5000; i++) {
+//            System.out.println("Всё - всё /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////");
+//        }
     }
 
     @Override

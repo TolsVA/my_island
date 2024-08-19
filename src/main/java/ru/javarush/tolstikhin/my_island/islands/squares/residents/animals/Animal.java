@@ -13,6 +13,15 @@ public abstract class Animal extends Organism {
     private double satiety; // сытность
     private final String[] genders = {"male", "female"};
     private final String gender = randomGender();  // пол
+    private boolean flag = false;
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
 
     public Map<Class<? extends Organism>, Integer> getFood(){
         return food;
@@ -58,14 +67,6 @@ public abstract class Animal extends Organism {
         return gender;
     }
 
-//    @Override
-//    public String toString() {
-//        return super.toString() +
-//                ", maxSpeed = '" + maxSpeed + '\'' +
-//                ", maxFood = '" + maxFood + '\'';
-//    }
-
-
     @Override
     public String toString() {
         return super.toString() +
@@ -74,9 +75,4 @@ public abstract class Animal extends Organism {
                 ", satiety = '" + satiety + '\'' +
                 ", gender = '" + gender + '\'';
     }
-
-//    public void eat(double eat) {
-//        satiety = satiety + eat;
-//        if (satiety > getMaxWeight()) satiety = getMaxWeight();
-//    }
 }

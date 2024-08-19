@@ -8,41 +8,42 @@ import java.util.List;
 import java.util.Map;
 
 public class TaskToMate extends Task {
-    public static final Object LOOK = new Object();
 
     public TaskToMate(
             Map<Class<? extends Organism>, List<Organism>> squareClassListOrganism,
-            Organism organism,
+            Animal animal,
             List<Organism> organisms
     ) {
-        super(squareClassListOrganism, organism, organisms);
+        super(squareClassListOrganism, animal, organisms);
     }
 
     @Override
     public void run() {
-        if (organism instanceof Animal animal && animal.getGender().equals("female")) {
-            boolean pairing = false;
+        if (animal.getGender().equals("female") && !animal.isFlag()) {
             for (int i = 0; i < organisms.size(); i++) {
-                if ( organisms.get(i) instanceof Animal aAnimal && aAnimal.getGender().equals("male")
-                        && aAnimal.getMaxAmount() > organisms.size()) {
-                    pairing = true;
-                    break;
+                if (organisms.get(i) instanceof Animal aAnimal && aAnimal.getGender().equals("male") && aAnimal.getMaxAmount() > organisms.size()) {
+                    try {
+                        Animal newAnimal = getAnimal(animal);
+                        organisms.add(newAnimal);
+                        System.out.println(newAnimal.getIcon() + " - родился");
+                        break;
+                    } catch (RuntimeException e) {
+                        System.out.println("Не случилось");
+                    }
                 }
             }
-            synchronized (LOOK) {
-                if (pairing) addAnimal(animal);
-            }
+            animal.setFlag(true);
         }
     }
 
-    private void addAnimal(Animal animal) {
+    private Animal getAnimal(Animal animal) {
+        Animal newAnimal;
         try {
-            Animal newAnimal = animal.getClass().getDeclaredConstructor().newInstance();
-            organisms.add(newAnimal);
-            System.out.println(newAnimal.getIcon() + " - родился");
+            newAnimal = animal.getClass().getDeclaredConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                  NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
+        return newAnimal;
     }
 }
