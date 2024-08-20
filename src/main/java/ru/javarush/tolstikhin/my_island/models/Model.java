@@ -70,7 +70,7 @@ public class Model implements Presentable {
 
     @Override
     public void start() {
-        executorService = Executors.newFixedThreadPool(20);
+        executorService = Executors.newFixedThreadPool(8);
         new Thread(() -> {
             Square[][] squaresTwo = island.getSquares();
             for (Square[] squares : squaresTwo) {

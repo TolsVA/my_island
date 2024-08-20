@@ -1,7 +1,7 @@
 package ru.javarush.tolstikhin.my_island.view;
 
-import ru.javarush.tolstikhin.my_island.islands.squares.Square;
+import javafx.scene.Node;
 
 public interface AddsElements {
-    void addSquare(Square square, int x, int y);
+    void addSquare(Node node, int x, int y);
 }

@@ -30,13 +30,13 @@ public class ThreadStartIsland implements Runnable {
                             new TaskToEat(squareClassListOrganism, animal, organisms, island)
                     );
 
-//                    executorService.execute(  // задача размножаться
-//                            new TaskToMate(squareClassListOrganism, animal, organisms)
-//                    );
-//
-//                    executorService.execute(  // задача передвигаться
-//                            new TaskToChangeLocation(square, squareClassListOrganism, animal, organisms, island)
-//                    );
+                    executorService.execute(  // задача размножаться
+                            new TaskToMate(squareClassListOrganism, animal, organisms)
+                    );
+
+                    executorService.execute(  // задача передвигаться
+                            new TaskToChangeLocation(square, squareClassListOrganism, animal, organisms, island)
+                    );
                 }
             }
         }

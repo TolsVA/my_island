@@ -12,12 +12,10 @@ import java.io.IOException;
 
 public class ErrorWindow {
 
-//    private static String message;
-
     public void start(String message)  {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(ErrorWindow.class.getResource("error-view.fxml"));
-        Scene scene = null;
+        Scene scene;
         try {
             scene = new Scene(fxmlLoader.load(), 650, 70);
         } catch (IOException e) {

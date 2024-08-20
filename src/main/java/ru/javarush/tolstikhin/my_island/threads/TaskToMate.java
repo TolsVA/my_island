@@ -4,6 +4,7 @@ import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.Animal;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Map;
 
@@ -19,21 +20,33 @@ public class TaskToMate extends Task {
 
     @Override
     public void run() {
-        if (animal.getGender().equals("female") && !animal.isFlag()) {
-            for (int i = 0; i < organisms.size(); i++) {
-                if (organisms.get(i) instanceof Animal aAnimal && aAnimal.getGender().equals("male") && aAnimal.getMaxAmount() > organisms.size()) {
-                    try {
-                        Animal newAnimal = getAnimal(animal);
-                        organisms.add(newAnimal);
-                        System.out.println(newAnimal.getIcon() + " - родился");
+        if (animal.getGender().equals("female") &&
+                !animal.isFlag() &&
+                !organisms.isEmpty() &&
+                animal.getMaxAmount() > organisms.size()
+        ) {
+            boolean b = false;
+            try {
+                for (Organism organism : organisms) {
+                    if (organism instanceof Animal aAnimal && aAnimal.getGender().equals("male")) {
+                        b = true;
                         break;
-                    } catch (RuntimeException e) {
-                        System.out.println("Не случилось");
                     }
                 }
+            } catch (ConcurrentModificationException e){
+                System.out.println("Не совсем похоже male");
             }
-            animal.setFlag(true);
+            if (b) {
+                try {
+                    Animal newAnimal = getAnimal(animal);
+                    organisms.add(newAnimal);
+                    System.out.println(newAnimal.getIcon() + " - родился");
+                } catch (RuntimeException e) {
+                    System.out.println("Не случилось");
+                }
+            }
         }
+        animal.setFlag(true);
     }
 
     private Animal getAnimal(Animal animal) {

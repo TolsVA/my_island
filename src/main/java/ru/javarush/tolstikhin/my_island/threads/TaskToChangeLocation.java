@@ -43,8 +43,9 @@ public class TaskToChangeLocation extends Task {
                     Square newSquare = island.getSquares(newX, newY);
                     Map<Class<? extends Organism>, List<Organism>> newOrganismList = newSquare.getOrganismList();
                     List<Organism> newOrganisms = newOrganismList.get(animal.getClass());
-                    organisms.remove(animal);
-                    newOrganisms.add(animal);
+                    if(organisms.remove(animal)) {
+                        newOrganisms.add(animal);
+                    }
                     System.out.println(
                             animal.getIcon() + " переместился с квадрата [" + square.getX() + ", " + square.getY() +
                                     "] на квадрат [" + newX + ", " + newY + "]"
@@ -55,6 +56,7 @@ public class TaskToChangeLocation extends Task {
                 } else break;
             }
         }
+        animal.setFlag(false);
     }
 
     private List<List<Integer>> getDirects() {         // максимальное значение по Y

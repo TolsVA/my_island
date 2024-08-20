@@ -51,7 +51,6 @@ public class Island  extends GridPane{
         return sizeY;
     }
 
-    //    @Override
     public void addClassListOrganisms(Class<? extends Organism> aClass) {
         if (!organismFullLinkedHashMap.containsKey(aClass)) {
             Field listOrganismOfOneType;

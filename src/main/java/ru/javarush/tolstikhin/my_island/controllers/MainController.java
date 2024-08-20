@@ -32,8 +32,8 @@ public class MainController {
     @FXML
     void initialize() {
         nameIsland.setText("Обитаемый остров");
-        xPoint.setText("3");
-        yPoint.setText("4");
+        xPoint.setText("20");
+        yPoint.setText("100");
         start.setOnAction(this::start);
         stop.setOnAction(this::close);
     }
@@ -60,6 +60,7 @@ public class MainController {
         if (!xPoint.getText().isEmpty() && isNumber(xPoint.getText())
                 && !yPoint.getText().isEmpty() && isNumber(yPoint.getText())) {
             try {
+                stage.close();
                 new InitWindow().start(
                         nameIsland.getText(),
                         Double.parseDouble(xPoint.getText()),

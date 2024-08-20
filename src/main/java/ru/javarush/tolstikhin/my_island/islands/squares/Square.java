@@ -15,7 +15,7 @@ public class Square extends VBox {
     private final int y;
     private ScrollBar scrollBar;
 
-    private Map<Class<? extends Organism>, List<Organism>> organismMapList = new LinkedHashMap<>();
+    private final Map<Class<? extends Organism>, List<Organism>> organismMapList = new LinkedHashMap<>();
 
     public Square(double x, double y, int count) {
         this.x = (int)x;
@@ -44,7 +44,7 @@ public class Square extends VBox {
         scrollBar.setMin(0);
         scrollBar.setMax(10);
         scrollBar.setValue(10);
-//        scrollBar.setTranslateX(10);
+        scrollBar.setTranslateX(10);
 
         scrollBar.valueProperty().addListener(e -> this.setOpacity(scrollBar.getValue() / 10));
     }
