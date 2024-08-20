@@ -1,7 +1,6 @@
 package ru.javarush.tolstikhin.my_island.islands;
 
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import ru.javarush.tolstikhin.my_island.islands.squares.Square;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.Organism;
@@ -14,15 +13,13 @@ import java.util.Map;
 public class Island  extends GridPane{
     private final int sizeX;
     private final int sizeY;
-    private final String name;
     private final Square[][] squares;
-    private Map<Class<? extends Organism>, List<Organism>> organismFullLinkedHashMap = new LinkedHashMap<>();
+    private final Map<Class<? extends Organism>, List<Organism>> organismFullLinkedHashMap = new LinkedHashMap<>();
 
-    public Island(double x, double y, String name) {
+    public Island(double x, double y) {
         super(x, y);
         sizeX = (int) x;
         sizeY = (int) y;
-        this.name = name;
         this.squares = new Square[sizeX][sizeY];
     }
 
@@ -42,11 +39,6 @@ public class Island  extends GridPane{
         return squares;
     }
 
-
-    public String getName() {
-        return name;
-    }
-
     public Map<Class<? extends Organism>, List<Organism>> getOrganismFullLinkedHashMap() {
         return organismFullLinkedHashMap;
     }
@@ -62,7 +54,7 @@ public class Island  extends GridPane{
     //    @Override
     public void addClassListOrganisms(Class<? extends Organism> aClass) {
         if (!organismFullLinkedHashMap.containsKey(aClass)) {
-            Field listOrganismOfOneType = null;
+            Field listOrganismOfOneType;
             List<Organism> organisms;
             try {
                 listOrganismOfOneType = aClass.getDeclaredField("LIST_ORGANISM_OF_ONE_TYPE");
@@ -71,7 +63,6 @@ public class Island  extends GridPane{
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 throw new RuntimeException(e);
             }
-
             organismFullLinkedHashMap.put(aClass, organisms);
         }
     }

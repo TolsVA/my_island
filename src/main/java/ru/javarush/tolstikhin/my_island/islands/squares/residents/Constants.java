@@ -10,34 +10,34 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Constants {
-    public static Map<Class<? extends Animal>, Map<Class<? extends Organism>, Integer>>  animalsMap = new HashMap<>();
-    public static Map<Class<? extends Organism>, Integer> mapOrganismClassCountMax = new LinkedHashMap<>();
+    public static final Map<Class<? extends Animal>, Map<Class<? extends Organism>, Integer>> ANIMALS_MAP = new HashMap<>();
+    public static final Map<Class<? extends Organism>, Integer> MAP_ORGANISM_CLASS_COUNT_MAX = new LinkedHashMap<>();
     static {
         Map<Class<? extends Organism>, Integer> mapEatPlant = new HashMap<>();
         mapEatPlant.put(Plant.class, 100);
-        animalsMap.put(Horse.class, mapEatPlant);       // Лошадь - траву
-        animalsMap.put(Deer.class, mapEatPlant);        // Олень - траву
-        animalsMap.put(Rabbit.class, mapEatPlant);      // Кролик - траву
-        animalsMap.put(Goat.class, mapEatPlant);        // Коза - траву
-        animalsMap.put(Sheep.class, mapEatPlant);       // Овца - траву
-        animalsMap.put(Buffalo.class, mapEatPlant);     // Буйвол - траву
-        animalsMap.put(Caterpillar.class, mapEatPlant); // Гусеница - траву
+        ANIMALS_MAP.put(Horse.class, mapEatPlant);       // Лошадь - траву
+        ANIMALS_MAP.put(Deer.class, mapEatPlant);        // Олень - траву
+        ANIMALS_MAP.put(Rabbit.class, mapEatPlant);      // Кролик - траву
+        ANIMALS_MAP.put(Goat.class, mapEatPlant);        // Коза - траву
+        ANIMALS_MAP.put(Sheep.class, mapEatPlant);       // Овца - траву
+        ANIMALS_MAP.put(Buffalo.class, mapEatPlant);     // Буйвол - траву
+        ANIMALS_MAP.put(Caterpillar.class, mapEatPlant); // Гусеница - траву
 
         Map<Class<? extends Organism>, Integer> mapEatMouse = new HashMap<>();
         mapEatMouse.put(Caterpillar.class, 90);   // Мышь - гусеницу
         mapEatMouse.put(Plant.class, 100);        // Мышь - траву
-        animalsMap.put(Mouse.class, mapEatMouse);
+        ANIMALS_MAP.put(Mouse.class, mapEatMouse);
 
         Map<Class<? extends Organism>, Integer> mapEatBoar = new HashMap<>();
         mapEatBoar.put(Mouse.class, 50);         // Кабан - мыш
         mapEatBoar.put(Caterpillar.class, 90);   // Кабан - гусеницу
         mapEatBoar.put(Plant.class, 100);        // Кабан - траву
-        animalsMap.put(Boar.class, mapEatBoar);
+        ANIMALS_MAP.put(Boar.class, mapEatBoar);
 
         Map<Class<? extends Organism>, Integer> mapEatDuck = new HashMap<>();
         mapEatDuck.put(Caterpillar.class, 90);   // Утка - гусеницу
         mapEatDuck.put(Plant.class, 100);        // Утка - траву
-        animalsMap.put(Duck.class,mapEatDuck);
+        ANIMALS_MAP.put(Duck.class,mapEatDuck);
 
         Map<Class<? extends Organism>, Integer> mapEatWolf = new HashMap<>();
         mapEatWolf.put(Buffalo.class, 10);       // Волк - буйвола
@@ -49,21 +49,21 @@ public class Constants {
         mapEatWolf.put(Rabbit.class, 60);        // Волк - кролика
         mapEatWolf.put(Sheep.class, 70);         // Волк - овцу
         mapEatWolf.put(Mouse.class, 80);         // Волк - мыш
-        animalsMap.put(Wolf.class, mapEatWolf);
+        ANIMALS_MAP.put(Wolf.class, mapEatWolf);
 
         Map<Class<? extends Organism>, Integer> mapEatBoa = new HashMap<>();
         mapEatBoa.put(Duck.class, 10);           // Удав - утку
         mapEatBoa.put(Fox.class, 15);            // Удав - лису
         mapEatBoa.put(Rabbit.class, 20);         // Удав - кролика
         mapEatBoa.put(Mouse.class, 40);          // Удав - мыш
-        animalsMap.put(Boa.class, mapEatBoa);
+        ANIMALS_MAP.put(Boa.class, mapEatBoa);
 
         Map<Class<? extends Organism>, Integer> mapEatFox = new HashMap<>();
         mapEatFox.put(Duck.class, 60);           // Лиса - утку
         mapEatFox.put(Rabbit.class, 70);         // Лиса - кролика
         mapEatFox.put(Mouse.class, 90);          // Лиса - мыш
         mapEatFox.put(Caterpillar.class, 40);    // Лиса - гусеницу
-        animalsMap.put(Fox.class, mapEatFox);
+        ANIMALS_MAP.put(Fox.class, mapEatFox);
 
         Map<Class<? extends Organism>, Integer> mapEatBear = new HashMap<>();
         mapEatBear.put(Duck.class, 10);          // Медведь - утку
@@ -76,30 +76,30 @@ public class Constants {
         mapEatBear.put(Deer.class, 80);          // Медведь - оленя
         mapEatBear.put(Rabbit.class, 80);        // Медведь - кролика
         mapEatBear.put(Mouse.class, 90);         // Медведь - мыш
-        animalsMap.put(Bear.class, mapEatBear);
+        ANIMALS_MAP.put(Bear.class, mapEatBear);
 
         Map<Class<? extends Organism>, Integer> mapEatEagle = new HashMap<>();
         mapEatEagle.put(Fox.class, 10);          // Орел - лису
         mapEatEagle.put(Duck.class, 80);         // Орел - утку
         mapEatEagle.put(Rabbit.class, 90);       // Орел - кролика
         mapEatEagle.put(Mouse.class, 90);        // Орел - мыш
-        animalsMap.put(Eagle.class, mapEatEagle);
+        ANIMALS_MAP.put(Eagle.class, mapEatEagle);
 
-        mapOrganismClassCountMax.put(Plant.class, 200);
-        mapOrganismClassCountMax.put(Caterpillar.class, 1000);
-        mapOrganismClassCountMax.put(Mouse.class, 500);
-        mapOrganismClassCountMax.put(Duck.class, 200);
-        mapOrganismClassCountMax.put(Rabbit.class, 150);
-        mapOrganismClassCountMax.put(Goat.class, 140);
-        mapOrganismClassCountMax.put(Sheep.class, 140);
-        mapOrganismClassCountMax.put(Wolf.class, 30);
-        mapOrganismClassCountMax.put(Fox.class, 30);
-        mapOrganismClassCountMax.put(Boa.class, 30);
-        mapOrganismClassCountMax.put(Boar.class, 50);
-        mapOrganismClassCountMax.put(Horse.class, 20);
-        mapOrganismClassCountMax.put(Deer.class, 20);
-        mapOrganismClassCountMax.put(Eagle.class, 20);
-        mapOrganismClassCountMax.put(Buffalo.class, 10);
-        mapOrganismClassCountMax.put(Bear.class, 5);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Plant.class, 200);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Caterpillar.class, 1000);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Mouse.class, 500);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Duck.class, 200);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Rabbit.class, 150);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Goat.class, 140);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Sheep.class, 140);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Wolf.class, 30);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Fox.class, 30);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Boa.class, 30);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Boar.class, 50);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Horse.class, 20);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Deer.class, 20);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Eagle.class, 20);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Buffalo.class, 10);
+        MAP_ORGANISM_CLASS_COUNT_MAX.put(Bear.class, 5);
     }
 }

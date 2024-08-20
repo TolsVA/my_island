@@ -2,7 +2,6 @@ package ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.preda
 
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.Animal;
 import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.CanHunt;
-import ru.javarush.tolstikhin.my_island.islands.squares.residents.animals.herbivores.Boar;
 
 import java.util.ArrayList;
 import java.util.List;

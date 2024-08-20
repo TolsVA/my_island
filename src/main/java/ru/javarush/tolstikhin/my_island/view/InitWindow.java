@@ -34,7 +34,7 @@ public class InitWindow {
         ScrollPane scrollPane = (ScrollPane) scene.lookup("#scrPane");
         stage.setOnShown(event -> scrollPane.lookup(".viewport").setStyle("-fx-background-color: #bdd0bf;"));
 
-        Island island = new Island(x, y, name);
+        Island island = new Island(x, y);
 
         AddsElements addsElements = island::add;
 

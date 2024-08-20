@@ -102,12 +102,7 @@ public class InitController {
     @FXML
     void initialize() {
 
-        bk.setOnAction(this::close);
-
-        exit.setOnAction(event -> {
-            System.exit(0);
-        });
-//        exit.setOnAction(this::close);
+        exit.setOnAction(this::close);
 
         start.setOnAction(event -> {
             model.start();
@@ -123,7 +118,7 @@ public class InitController {
     }
 
     private void close(ActionEvent e) {
-        stage.close();
+        System.exit(0);
     }
 
     public void setModel(Presentable model) {
