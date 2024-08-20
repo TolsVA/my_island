@@ -26,7 +26,7 @@ public class ThreadStartIsland implements Runnable {
         for (List<Organism> organisms : squareClassListOrganism.values()) {
             for (int i = 0; i < organisms.size(); i++) {
                 if (organisms.get(i) instanceof Animal animal && !animal.isFlag()) {
-                    executorService.execute(  // задача есть или умереть от голода
+                    executorService.execute(   // задача есть или умереть от голода
                             new TaskToEat(squareClassListOrganism, animal, organisms, island)
                     );
 
